@@ -93,10 +93,12 @@ npm run build
 | `src/css/index.txt` | Orden de unión de los parciales. |
 | `src/js/ginyu.js` | Helpers JS. |
 | `scripts/build.js` | Genera `dist/`. |
+| `scripts/iconos.js` | Regenera `skills/ginyu/iconos.json` e `iconos.md` desde el banco de íconos de `ui-components`. |
 | `dist/` | Lo que se publica. Se sube al repositorio. |
 
 Reglas de mantenimiento:
 
+0. Los íconos SVG de la skill salen de la página `ui-components` del proyecto. Tras agregar o cambiar uno: `npm run iconos -- <ruta>/ui-components/index.phtml`, y luego commit y push de `skills/ginyu/iconos.json` e `iconos.md`. El script copia ambos archivos a la skill local si encuentra `.claude/skills/ginyu` junto al proyecto.
 1. Nunca se editan `dist/` ni `skills/ginyu/assets/`. Se edita `src/` y se corre el build, que actualiza ambos.
 2. Un componente nuevo es un parcial `src/css/_nombre.css` agregado a `src/css/index.txt` antes de `_utilities.css`.
 3. Los colores y medidas salen de las variables `--gyu-*` de `_tokens.css`. Un color nuevo es un bloque en `_theme.css` con sus tokens.
