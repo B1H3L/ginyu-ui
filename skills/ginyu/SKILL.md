@@ -38,6 +38,13 @@ El CSS importa DM Sans (Google Fonts) e iziToast (jsDelivr). El JS necesita jQue
 7. **Un color nuevo** se declara como un theme propio, definiendo en una clase `gyu-theme-<nombre>` las variables `--gyu-c`, `--gyu-c-hover`, `--gyu-c-soft`, `--gyu-c-ink` y `--gyu-c-contrast`. Funciona en botones y badges.
 8. **Diálogos** con `Swalert` y **avisos** con `GinyuToast`. Escapar el texto que viene del servidor antes de pasarlo, porque los diálogos insertan HTML.
 9. Modificadores con guion simple (`gyu-grilla-arbol`). Estados: `gyu-abierto`, `gyu-seleccionado`, `gyu-deshabilitado`.
+10. **Botón Guardar de un modal:** siempre `gyu-btn-solid` sin theme (primary). Cancelar es `gyu-btn-outline gyu-theme-secondary`.
+11. **Sin subtítulo bajo el `<h4>` de la cabecera de página.** En `gyu-modal-titulo` sí puede ir una línea de apoyo.
+12. **Todo `<select>` usa `gyu-select` y `gyuSeleccion`.** Si el código cambia opciones, valor o `disabled`, sincronizar con `trigger('gyu.actualizar')`.
+13. **Grilla que llena la pantalla:** contenedor `flex: 1 1 0` con `ResizeObserver` y `ginyuEmptyState` (receta en `componentes.md`).
+14. **Fechas:** `gyu-input` de tipo `date` o `datetime-local` con el ícono de calendario de `componentes.md`.
+15. **Un solo Ginyu por página.** No cargar el CSS o JS de una versión anterior junto a este. Si un CSS del proyecto hace `@import` de la versión anterior, quitar esa línea.
+16. **`<style>` propios:** se eliminan. Solo se conservan si necesitan `@keyframes`, `:hover`, pseudo-elementos o `@media`, y se avisa de ello.
 
 ## Estructura de una vista
 
@@ -63,4 +70,5 @@ El CSS importa DM Sans (Google Fonts) e iziToast (jsDelivr). El JS necesita jQue
 2. Envolver el contenido en `gyu-pagina` > `gyu-cabecera` + `gyu-cuerpo`.
 3. Reemplazar los botones, formularios, tablas, modales y alertas por sus equivalentes de `componentes.md`.
 4. Mover los `style` y `<style>` de adorno a las clases de Ginyu; dejar `style=""` solo para ajustes puntuales de layout.
+   Los tamaños que Ginyu no tiene (por ejemplo controles de 30px) se dejan inline con `style=""` y se avisan al usuario.
 5. Comprobar que toda clase `gyu-*` usada exista en `assets/ginyu.css`.
