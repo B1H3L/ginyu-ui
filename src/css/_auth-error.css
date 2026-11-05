@@ -1,0 +1,44 @@
+.gyu-auth-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 24px 24px;
+  font-family: var(--gyu-fuente);
+  text-align: center;
+}
+
+.gyu-auth-error-icono {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 86px;
+  height: 86px;
+  margin-bottom: 18px;
+  color: var(--gyu-danger);
+  background: var(--gyu-danger-soft);
+  border-radius: 18px;
+}
+
+.gyu-auth-error-icono svg {
+  width: 52px;
+  height: 52px;
+}
+
+.gyu-auth-error .gyu-dialogo-titulo {
+  margin-bottom: 8px;
+  font-size: 22px;
+}
+
+.gyu-auth-error .gyu-dialogo-texto {
+  max-width: 560px;
+  margin-bottom: 8px;
+  font-size: 16px;
+  line-height: 1.35;
+}
+
+.gyu-auth-error button {
+  --gyu-btn-fs: 16px;
+  width: 100%;
+  max-width: 420px;
+  margin-top: 18px;
+}

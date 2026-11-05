@@ -1,0 +1,50 @@
+.gyu-buscar {
+  position: relative;
+  width: 100%;
+}
+
+.gyu-buscar input {
+  width: 100%;
+  height: var(--gyu-alto-control);
+  padding: 8px 38px 8px 12px;
+  font-size: 13px;
+  color: var(--gyu-texto-1);
+  background-color: var(--gyu-fondo);
+  border: 1.2px solid var(--gyu-linea-fuerte);
+  border-radius: var(--gyu-radio);
+  box-shadow: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.gyu-buscar input:focus {
+  border-color: var(--gyu-primary);
+  box-shadow: 0 0 0 2px var(--gyu-primary-ring);
+  outline: none;
+}
+
+.gyu-buscar-icono {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gyu-texto-3);
+  pointer-events: none;
+}
+
+.gyu-buscar-icono svg {
+  width: 20px;
+  height: 20px;
+}
+
+.gyu-buscar-izq input {
+  padding: 8px 12px 8px 38px;
+}
+
+.gyu-buscar-izq .gyu-buscar-icono {
+  right: auto;
+  left: 12px;
+}
+

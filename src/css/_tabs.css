@@ -1,0 +1,113 @@
+.gyu-tabs {
+  --gyu-tabs-c: #4338ca;
+  --gyu-tabs-linea: #89909b;
+  --gyu-tabs-fondo: var(--gyu-fondo-panel);
+  border-radius: 0 0 var(--gyu-radio-l) var(--gyu-radio-l);
+}
+
+.gyu-tabs,
+.gyu-tabs *:not([class*="fa-"]):not(.fa) {
+  font-family: var(--gyu-fuente);
+}
+
+.gyu-tabs.jqx-tabs {
+  background: transparent !important;
+  border: none !important;
+}
+
+.gyu-tabs .jqx-tabs-title-container,
+.gyu-tabs .jqx-tabs-header {
+  background-color: var(--gyu-tabs-fondo) !important;
+  border: none !important;
+  border-radius: 0 0 var(--gyu-radio-l) var(--gyu-radio-l);
+  box-shadow: none !important;
+}
+
+.gyu-tabs .jqx-tabs-header {
+  position: relative;
+}
+
+.gyu-tabs .jqx-tabs-header::before {
+  content: "";
+  position: absolute;
+  right: 15px;
+  bottom: 0;
+  left: 15px;
+  height: 1px;
+  background-color: var(--gyu-tabs-linea);
+}
+
+.gyu-tabs-linea {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  height: 2.5px;
+  background-color: var(--gyu-tabs-c);
+  border-radius: 3px 3px 0 0;
+  transition: left 0.28s cubic-bezier(0.4, 0, 0.2, 1), width 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.gyu-tabs .jqx-tabs-title {
+  margin-right: 24px !important;
+  padding: 0 4px 12px !important;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gyu-texto-4) !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  transition: color 0.2s ease;
+}
+
+.gyu-tabs .jqx-tabs-title i {
+  margin-right: 4px;
+}
+
+.gyu-tabs .jqx-tabs-title.jqx-fill-state-hover,
+.gyu-tabs .jqx-tabs-title:hover,
+.gyu-tabs .jqx-tabs-title.jqx-tabs-selected,
+.gyu-tabs .jqx-tabs-title.jqx-fill-state-pressed,
+.gyu-tabs .jqx-tabs-title-selectedTop {
+  color: var(--gyu-tabs-c) !important;
+  background: transparent !important;
+}
+
+.gyu-tabs .jqx-tabs-title.jqx-tabs-selected,
+.gyu-tabs .jqx-tabs-title.jqx-fill-state-pressed,
+.gyu-tabs .jqx-tabs-title-selectedTop {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.gyu-tabs .jqx-tabs-content {
+  padding-top: 1.5rem;
+  background: transparent !important;
+  border: none !important;
+}
+
+.gyu-fade-in {
+  animation: gyu-fade-in 0.6s ease-out;
+}
+
+@keyframes gyu-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gyu-fade-in {
+    animation: none;
+  }
+
+  .gyu-tabs-linea {
+    transition: none;
+  }
+}

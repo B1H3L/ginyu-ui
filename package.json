@@ -1,0 +1,33 @@
+{
+  "name": "ginyu-ui",
+  "version": "1.0.0",
+  "description": "Ginyu UI: sistema de diseño con API tipo Bootstrap 6 (estilo + theme) y componentes propios.",
+  "main": "dist/ginyu.min.js",
+  "style": "dist/ginyu.min.css",
+  "jsdelivr": "dist/ginyu.min.js",
+  "unpkg": "dist/ginyu.min.js",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "node scripts/build.js"
+  },
+  "keywords": [
+    "css",
+    "ui",
+    "design-system",
+    "ginyu"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "esbuild": "^0.28.2"
+  },
+  "author": "Billy Penaran",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/B1H3L/ginyu-ui.git"
+  },
+  "homepage": "https://github.com/B1H3L/ginyu-ui#readme"
+}

@@ -1,0 +1,98 @@
+.gyu-check-lista {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  width: 100%;
+  margin: 4px 0 16px;
+}
+
+.gyu-check {
+  position: relative;
+  min-width: 0;
+}
+
+.gyu-check-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.gyu-check-card {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 38px;
+  margin: 0;
+  padding: 8px 12px;
+  overflow: hidden;
+  font-family: var(--gyu-fuente);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--gyu-texto-1);
+  background-color: var(--gyu-fondo);
+  border: 1px solid var(--gyu-linea);
+  border-radius: var(--gyu-radio-s);
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.gyu-check-card > span:last-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gyu-check-indicador {
+  position: relative;
+  flex: 0 0 14px;
+  width: 14px;
+  height: 14px;
+  background-color: var(--gyu-fondo);
+  border: 1px solid var(--gyu-texto-4);
+  border-radius: 4px;
+}
+
+.gyu-check-input:checked + .gyu-check-card {
+  color: var(--gyu-primary-ink);
+  background-color: var(--gyu-primary-soft);
+  border-color: var(--gyu-primary-soft);
+}
+
+.gyu-check-input:checked + .gyu-check-card .gyu-check-indicador {
+  background-color: var(--gyu-primary);
+  border-color: var(--gyu-primary);
+}
+
+.gyu-check-input:checked + .gyu-check-card .gyu-check-indicador::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 4px;
+  width: 4px;
+  height: 7px;
+  border: solid var(--gyu-fondo);
+  border-width: 0 1.5px 1.5px 0;
+  transform: rotate(45deg);
+}
+
+.gyu-check-input:focus + .gyu-check-card {
+  border-color: var(--gyu-primary);
+  box-shadow: 0 0 0 2px var(--gyu-primary-ring);
+  outline: none;
+}
+
+@media (max-width: 991px) {
+  .gyu-check-lista {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 575px) {
+  .gyu-check-lista {
+    grid-template-columns: 1fr;
+  }
+}

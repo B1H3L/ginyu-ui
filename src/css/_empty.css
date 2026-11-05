@@ -1,0 +1,39 @@
+.gyu-vacio {
+  position: absolute;
+  top: var(--gyu-vacio-top, 68px);
+  right: 1px;
+  bottom: 1px;
+  left: 1px;
+  z-index: 10;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background: var(--gyu-fondo);
+  border-radius: 0 0 var(--gyu-radio-l) var(--gyu-radio-l);
+  text-align: center;
+  pointer-events: none;
+}
+
+.gyu-vacio svg {
+  width: 50px;
+  height: 50px;
+}
+
+.gyu-vacio-titulo {
+  margin-top: 4px;
+  font-family: var(--gyu-fuente);
+  font-size: 14.5px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--gyu-texto-1);
+}
+
+.gyu-vacio-desc {
+  font-family: var(--gyu-fuente);
+  font-size: 12px;
+  line-height: 1.3;
+  color: var(--gyu-texto-4);
+}
+

@@ -1,0 +1,267 @@
+.gyu-seleccion {
+  --gyu-sel-borde: #d8d8d8;
+  --gyu-sel-texto: #434c5b;
+  --gyu-sel-panel-radio: 16px;
+  --gyu-sel-panel-borde: #eef2f6;
+  --gyu-sel-panel-sombra: 0 16px 36px rgba(15, 23, 42, 0.14);
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: var(--gyu-fuente);
+}
+
+.gyu-seleccion.gyu-abierto {
+  z-index: 2000;
+}
+
+.gyu-seleccion-activador {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  width: 100%;
+  height: 40px;
+  padding: 0 14px;
+  font-family: var(--gyu-fuente);
+  font-size: 13.5px;
+  font-weight: 500;
+  text-align: left;
+  color: var(--gyu-sel-texto);
+  background: var(--gyu-fondo);
+  border: 0.75px solid var(--gyu-sel-borde);
+  border-radius: var(--gyu-radio-l);
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gyu-seleccion-activador:hover,
+.gyu-seleccion.gyu-abierto .gyu-seleccion-activador {
+  border-color: var(--gyu-primary);
+}
+
+.gyu-seleccion.gyu-abierto .gyu-seleccion-activador {
+  box-shadow: 0 0 0 2px var(--gyu-primary-ring);
+}
+
+.gyu-seleccion-activador:disabled {
+  color: var(--gyu-texto-4);
+  background: var(--gyu-linea-suave);
+  border-color: var(--gyu-sel-borde);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.gyu-seleccion-rotulo {
+  padding-right: 8px;
+  overflow: hidden;
+  font-size: 13px;
+  color: inherit;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gyu-seleccion-rotulo.gyu-placeholder {
+  font-weight: 400;
+  color: var(--gyu-texto-4);
+}
+
+.gyu-seleccion-flecha {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") no-repeat center / contain;
+  transition: transform 0.2s ease;
+}
+
+.gyu-seleccion.gyu-abierto .gyu-seleccion-flecha {
+  transform: rotate(180deg);
+}
+
+.gyu-seleccion-desplegable {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  left: 0;
+  z-index: 2001;
+  display: none;
+  box-sizing: border-box;
+  min-width: 220px;
+  padding: 6px 0 8px;
+  background: var(--gyu-fondo);
+  border: 1px solid var(--gyu-sel-panel-borde);
+  border-radius: var(--gyu-sel-panel-radio);
+  box-shadow: var(--gyu-sel-panel-sombra);
+  animation: gyu-seleccion-aparecer 0.15s ease-out;
+}
+
+.gyu-seleccion.gyu-abierto .gyu-seleccion-desplegable {
+  display: block;
+}
+
+@keyframes gyu-seleccion-aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.gyu-seleccion-busqueda {
+  padding: 6px 12px 8px;
+  border-bottom: 1px solid var(--gyu-linea-suave);
+}
+
+.gyu-seleccion-busqueda-entrada {
+  box-sizing: border-box;
+  width: 100%;
+  height: 36px;
+  margin: 0;
+  padding: 0 12px;
+  font-size: 13.5px;
+  color: var(--gyu-texto-1);
+  background: var(--gyu-fondo-2);
+  border: 1px solid var(--gyu-linea);
+  border-radius: var(--gyu-radio-l);
+  outline: none;
+  box-shadow: 0 2px 5px rgba(15, 23, 42, 0.06);
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gyu-seleccion-busqueda-entrada:focus {
+  background: var(--gyu-fondo);
+  border-color: var(--gyu-primary);
+  box-shadow: 0 0 0 3px var(--gyu-primary-ring), 0 2px 6px rgba(15, 23, 42, 0.08);
+}
+
+.gyu-seleccion-acciones {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 14px;
+  border-bottom: 1px solid var(--gyu-linea-suave);
+}
+
+.gyu-seleccion-accion {
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gyu-primary);
+  background: none;
+  border: none;
+  border-radius: var(--gyu-radio-s);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.gyu-seleccion-accion:hover {
+  background: var(--gyu-primary-soft);
+}
+
+.gyu-seleccion-accion-limpiar {
+  color: var(--gyu-texto-4);
+}
+
+.gyu-seleccion-accion-limpiar:hover {
+  color: var(--gyu-danger);
+  background: var(--gyu-danger-soft);
+}
+
+.gyu-seleccion-opciones {
+  max-height: 220px;
+  padding: 4px 0;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+}
+
+.gyu-seleccion-opciones::-webkit-scrollbar {
+  width: 6px;
+}
+
+.gyu-seleccion-opciones::-webkit-scrollbar-thumb {
+  background: var(--gyu-linea-fuerte);
+  border-radius: 3px;
+}
+
+.gyu-seleccion-opcion {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 8px 16px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.12s ease;
+}
+
+.gyu-seleccion-opcion:hover {
+  background: var(--gyu-fondo-2);
+}
+
+.gyu-seleccion-opcion.gyu-deshabilitado {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.gyu-seleccion-texto {
+  font-size: 14px;
+  line-height: 1.3;
+  color: var(--gyu-texto-1);
+}
+
+.gyu-seleccion-opcion.gyu-seleccionado .gyu-seleccion-texto {
+  font-weight: 500;
+  color: var(--gyu-texto-max);
+}
+
+.gyu-seleccion-casilla {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 18px;
+  height: 18px;
+  background: var(--gyu-fondo);
+  border: 1.5px solid var(--gyu-linea-fuerte);
+  border-radius: 5px;
+  transition: all 0.15s ease;
+}
+
+.gyu-seleccion-opcion.gyu-seleccionado .gyu-seleccion-casilla {
+  background: var(--gyu-primary);
+  border-color: var(--gyu-primary);
+}
+
+.gyu-seleccion-opcion.gyu-seleccionado .gyu-seleccion-casilla::after {
+  content: "";
+  display: block;
+  width: 4.5px;
+  height: 8.5px;
+  margin-top: -2px;
+  border-right: 2px solid var(--gyu-fondo);
+  border-bottom: 2px solid var(--gyu-fondo);
+  transform: rotate(45deg);
+}
+
+.gyu-seleccion-escudo {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  margin-right: 10px;
+  object-fit: contain;
+}
+
+.gyu-seleccion-activador .gyu-seleccion-escudo {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gyu-seleccion-desplegable {
+    animation: none;
+  }
+}

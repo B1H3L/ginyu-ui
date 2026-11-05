@@ -1,0 +1,14 @@
+{
+  "name": "ginyu",
+  "description": "Plugins de Ginyu",
+  "owner": {
+    "name": "Billy Penaran"
+  },
+  "plugins": [
+    {
+      "name": "ginyu-ui",
+      "source": "./",
+      "description": "Sistema de diseño Ginyu: reglas, componentes y archivos listos (CSS y JS)."
+    }
+  ]
+}

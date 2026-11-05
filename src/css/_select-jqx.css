@@ -1,0 +1,48 @@
+.gyu-select-jqx,
+.gyu-select-jqx.jqx-dropdownbutton {
+  height: 40px !important;
+  font-family: var(--gyu-fuente) !important;
+  font-size: 13.5px !important;
+  color: var(--gyu-texto) !important;
+  background-color: var(--gyu-fondo) !important;
+  border: 1.5px solid var(--gyu-linea-fuerte) !important;
+  border-radius: var(--gyu-radio) !important;
+  box-shadow: none !important;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.gyu-select-jqx.jqx-dropdownbutton:focus,
+.gyu-select-jqx.jqx-fill-state-focus,
+.gyu-select-jqx.jqx-dropdownbutton.jqx-fill-state-pressed {
+  border-color: var(--gyu-primary) !important;
+  box-shadow: 0 0 0 2px var(--gyu-primary-ring) !important;
+}
+
+.gyu-select-jqx .jqx-dropdownbutton-content {
+  font-family: var(--gyu-fuente) !important;
+  font-size: 13px !important;
+  color: var(--gyu-texto) !important;
+}
+
+.gyu-select-jqx .jqx-dropdownbutton-popup-button {
+  background: transparent !important;
+  border: none !important;
+}
+
+.gyu-select-jqx .jqx-icon-arrow-down,
+.gyu-select-jqx .jqx-icon-arrow-down-bootstrap {
+  position: relative !important;
+  right: 8px !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: 14px 14px !important;
+}
+
+.jqx-dropdownbutton-popup {
+  background-color: var(--gyu-fondo) !important;
+  border: 1px solid var(--gyu-linea) !important;
+  border-radius: var(--gyu-radio-m) !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05) !important;
+  overflow: hidden !important;
+}

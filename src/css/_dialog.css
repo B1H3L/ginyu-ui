@@ -1,0 +1,91 @@
+.swal2-container.gyu-dialogo-fondo {
+  z-index: var(--gyu-z-dialogo) !important;
+  background-color: var(--gyu-overlay) !important;
+  backdrop-filter: blur(2px) !important;
+  -webkit-backdrop-filter: blur(2px) !important;
+}
+
+.swal2-popup.gyu-dialogo {
+  width: 440px !important;
+  max-width: 90vw !important;
+  padding: 36px 32px 32px !important;
+  font-family: var(--gyu-fuente) !important;
+  border-radius: var(--gyu-radio-xl) !important;
+  box-shadow: 0 25px 35px -5px rgba(0, 0, 0, 0.12), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+}
+
+.gyu-dialogo-cuerpo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.gyu-dialogo-icono {
+  --gyu-icono-c: var(--gyu-danger);
+  --gyu-icono-s: var(--gyu-danger-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 82px;
+  height: 82px;
+  margin-bottom: 22px;
+  color: var(--gyu-icono-c);
+  background-color: var(--gyu-icono-s);
+  border-radius: 50%;
+}
+
+.gyu-dialogo-icono svg {
+  width: 36px;
+  height: 36px;
+}
+
+.gyu-dialogo-icono-primary {
+  --gyu-icono-c: var(--gyu-primary);
+  --gyu-icono-s: var(--gyu-primary-soft);
+}
+
+.gyu-dialogo-titulo {
+  margin: 0 0 10px;
+  font-family: var(--gyu-fuente);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--gyu-texto);
+}
+
+.gyu-dialogo-texto {
+  margin: 0;
+  font-family: var(--gyu-fuente);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--gyu-texto-2);
+}
+
+.swal2-actions.gyu-dialogo-acciones {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 14px !important;
+  width: 100% !important;
+  margin-top: 26px !important;
+}
+
+.gyu-dialogo-acciones button {
+  min-width: 140px;
+}
+
+.gyu-dialogo-acciones-completo button {
+  width: 100%;
+}
+
+.swal2-close.gyu-dialogo-cerrar {
+  position: absolute !important;
+  top: 10px !important;
+  right: 10px !important;
+  font-size: 24px !important;
+  color: var(--gyu-texto-3) !important;
+  transition: color 0.15s ease !important;
+}
+
+.swal2-close.gyu-dialogo-cerrar:hover {
+  color: var(--gyu-texto) !important;
+}

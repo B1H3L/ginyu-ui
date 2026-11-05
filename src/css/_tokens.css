@@ -1,0 +1,73 @@
+:root {
+  --gyu-texto: #1e293b;
+  --gyu-texto-1: #334155;
+  --gyu-texto-2: #475569;
+  --gyu-texto-3: #64748b;
+  --gyu-texto-4: #94a3b8;
+
+  --gyu-linea: #e2e8f0;
+  --gyu-linea-suave: #f1f5f9;
+  --gyu-linea-fuerte: #cbd5e1;
+
+  --gyu-fondo: #ffffff;
+  --gyu-fondo-2: #f8fafc;
+  --gyu-fondo-3: #fafbfc;
+  --gyu-fondo-fijo: #e5e5e5;
+  --gyu-marino: #113893;
+  --gyu-fondo-panel: #f8f9fa;
+  --gyu-titulo: #000000;
+  --gyu-subtitulo: #6f747c;
+  --gyu-texto-max: #0f172a;
+
+  --gyu-primary: #2b85df;
+  --gyu-primary-hover: #1d4ed8;
+  --gyu-primary-soft: #eaf2fd;
+  --gyu-primary-ink: #1077de;
+  --gyu-primary-border: #bfdbfe;
+  --gyu-primary-text: #1976d2;
+  --gyu-primary-chip: #dceafd;
+  --gyu-primary-ring: rgba(43, 133, 223, 0.15);
+  --gyu-secondary: #64748b;
+  --gyu-secondary-hover: #475569;
+  --gyu-secondary-soft: #f1f5f9;
+  --gyu-secondary-ink: #64748b;
+  --gyu-success: #16c56d;
+  --gyu-success-hover: #12ad60;
+  --gyu-success-soft: #e7f9ef;
+  --gyu-success-ink: #15803d;
+  --gyu-danger: #ff383c;
+  --gyu-danger-hover: #e12a2e;
+  --gyu-danger-soft: #ffecec;
+  --gyu-danger-ink: #dc2626;
+  --gyu-warning: #f59e0b;
+  --gyu-warning-hover: #d97706;
+  --gyu-warning-soft: #fef3c7;
+  --gyu-warning-ink: #b45309;
+  --gyu-info: #0369a1;
+  --gyu-info-hover: #075985;
+  --gyu-info-soft: #e0f2fe;
+  --gyu-info-ink: #0369a1;
+  --gyu-accent: #6c5ce7;
+  --gyu-accent-hover: #5b4bd6;
+  --gyu-accent-ink: #7c3aed;
+  --gyu-accent-soft: #ede9fe;
+
+  --gyu-radio-s: 6px;
+  --gyu-radio: 8px;
+  --gyu-radio-l: 10px;
+  --gyu-radio-m: 12px;
+  --gyu-radio-panel: 15px;
+  --gyu-radio-modal: 16px;
+  --gyu-radio-xl: 24px;
+
+  --gyu-overlay: rgba(15, 23, 42, 0.45);
+  --gyu-z-sidebar: 1100;
+  --gyu-z-menu-base: 9999;
+  --gyu-z-menu: 99999;
+  --gyu-z-dialogo: 99999999;
+  --gyu-z-toast: 999999999;
+
+  --gyu-alto-control: 38px;
+  --gyu-fuente: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+

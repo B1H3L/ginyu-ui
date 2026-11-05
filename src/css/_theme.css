@@ -1,0 +1,63 @@
+.gyu-theme-primary {
+  --gyu-c: var(--gyu-primary);
+  --gyu-c-hover: var(--gyu-primary-hover);
+  --gyu-c-soft: var(--gyu-primary-soft);
+  --gyu-c-ink: var(--gyu-primary-ink);
+  --gyu-c-contrast: var(--gyu-fondo);
+}
+
+.gyu-theme-secondary {
+  --gyu-c: var(--gyu-secondary);
+  --gyu-c-hover: var(--gyu-secondary-hover);
+  --gyu-c-soft: var(--gyu-secondary-soft);
+  --gyu-c-ink: var(--gyu-secondary-ink);
+  --gyu-c-contrast: var(--gyu-fondo);
+}
+
+.gyu-theme-success {
+  --gyu-c: var(--gyu-success);
+  --gyu-c-hover: var(--gyu-success-hover);
+  --gyu-c-soft: var(--gyu-success-soft);
+  --gyu-c-ink: var(--gyu-success-ink);
+  --gyu-c-contrast: var(--gyu-fondo);
+}
+
+.gyu-theme-danger {
+  --gyu-c: var(--gyu-danger);
+  --gyu-c-hover: var(--gyu-danger-hover);
+  --gyu-c-soft: var(--gyu-danger-soft);
+  --gyu-c-ink: var(--gyu-danger-ink);
+  --gyu-c-contrast: var(--gyu-fondo);
+}
+
+.gyu-theme-warning {
+  --gyu-c: var(--gyu-warning);
+  --gyu-c-hover: var(--gyu-warning-hover);
+  --gyu-c-soft: var(--gyu-warning-soft);
+  --gyu-c-ink: var(--gyu-warning-ink);
+  --gyu-c-contrast: var(--gyu-texto);
+}
+
+.gyu-theme-info {
+  --gyu-c: var(--gyu-info);
+  --gyu-c-hover: var(--gyu-info-hover);
+  --gyu-c-soft: var(--gyu-info-soft);
+  --gyu-c-ink: var(--gyu-info-ink);
+  --gyu-c-contrast: var(--gyu-fondo);
+}
+
+.gyu-theme-accent {
+  --gyu-c: var(--gyu-accent);
+  --gyu-c-hover: var(--gyu-accent-hover);
+  --gyu-c-soft: var(--gyu-accent-soft);
+  --gyu-c-ink: var(--gyu-accent-ink);
+  --gyu-c-contrast: var(--gyu-fondo);
+}
+
+.gyu-theme-inverse {
+  --gyu-c: var(--gyu-texto);
+  --gyu-c-hover: var(--gyu-texto-max);
+  --gyu-c-soft: var(--gyu-linea-suave);
+  --gyu-c-ink: var(--gyu-texto);
+  --gyu-c-contrast: var(--gyu-fondo);
+}

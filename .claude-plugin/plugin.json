@@ -1,0 +1,17 @@
+{
+  "name": "ginyu-ui",
+  "version": "1.0.0",
+  "description": "Sistema de diseño Ginyu: reglas, componentes y archivos listos (CSS y JS) para usarlo en proyectos nuevos.",
+  "keywords": [
+    "design-system",
+    "css",
+    "ui",
+    "ginyu"
+  ],
+  "author": {
+    "name": "Billy Penaran"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/B1H3L/ginyu-ui",
+  "homepage": "https://github.com/B1H3L/ginyu-ui#readme"
+}

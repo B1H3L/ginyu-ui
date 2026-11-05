@@ -1,0 +1,97 @@
+.gyu-menu {
+  display: flex;
+  flex-direction: column;
+  min-width: 115px;
+  padding: 4px 0;
+  overflow: hidden;
+  background-color: var(--gyu-fondo);
+  border-radius: var(--gyu-radio-m);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.gyu-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px 16px;
+  font-family: var(--gyu-fuente);
+  font-size: 14px;
+  font-weight: 500;
+  text-align: left;
+  color: var(--gyu-texto);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--gyu-linea-suave);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.gyu-menu-item:last-child {
+  border-bottom: none;
+}
+
+.gyu-menu-item:hover {
+  background-color: var(--gyu-fondo-2);
+}
+
+.gyu-menu-item svg,
+.gyu-menu-item i {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  color: var(--gyu-texto-1);
+}
+
+.gyu-desplegable {
+  position: relative;
+  z-index: var(--gyu-z-menu-base);
+}
+
+.gyu-desplegable-menu {
+  position: absolute;
+  z-index: var(--gyu-z-menu);
+  display: none;
+  perspective: 600px;
+}
+
+.gyu-desplegable-menu button {
+  animation: gyu-cascada 0.24s cubic-bezier(0.22, 1, 0.36, 1) both;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+  will-change: transform, opacity;
+}
+
+.gyu-desplegable-menu button:nth-child(1) { animation-delay: 0.02s; }
+.gyu-desplegable-menu button:nth-child(2) { animation-delay: 0.06s; }
+.gyu-desplegable-menu button:nth-child(3) { animation-delay: 0.1s; }
+.gyu-desplegable-menu button:nth-child(4) { animation-delay: 0.14s; }
+.gyu-desplegable-menu button:nth-child(5) { animation-delay: 0.18s; }
+.gyu-desplegable-menu button:nth-child(6) { animation-delay: 0.22s; }
+
+.gyu-desplegable-menu button:hover {
+  filter: brightness(1.04);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+  transform: translateY(-2px) scale(1.02);
+}
+
+.gyu-desplegable-menu button:active {
+  transform: translateY(0) scale(0.98);
+}
+
+@keyframes gyu-cascada {
+  from {
+    opacity: 0;
+    transform: translateY(-14px) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gyu-desplegable-menu button {
+    animation: none;
+    transition: none;
+  }
+}

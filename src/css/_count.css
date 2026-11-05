@@ -1,0 +1,28 @@
+.gyu-conteo {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: var(--gyu-alto-control);
+  padding: 0 10px;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  color: var(--gyu-primary-text);
+  background-color: var(--gyu-fondo);
+  border: 1.5px solid var(--gyu-primary);
+  border-radius: var(--gyu-radio);
+}
+
+.gyu-conteo span {
+  padding: 0 5px;
+}
+
+@media (max-width: 991px) {
+  .gyu-conteo {
+    padding: 0 6px;
+    font-size: 12px;
+  }
+}
+

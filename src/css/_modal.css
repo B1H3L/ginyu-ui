@@ -1,0 +1,78 @@
+.gyu-modal {
+  background-color: var(--gyu-fondo-panel) !important;
+  border: 1px solid var(--gyu-linea) !important;
+  border-radius: var(--gyu-radio-modal) !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+  overflow: hidden !important;
+}
+
+.gyu-modal .jqx-window-header {
+  box-sizing: border-box !important;
+  height: auto !important;
+  padding: 16px 20px !important;
+  font-family: var(--gyu-fuente) !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  color: var(--gyu-texto) !important;
+  border-bottom: 1px solid var(--gyu-linea) !important;
+}
+
+.gyu-modal-titulo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.gyu-modal-titulo h4 {
+  margin: 0 0 2px;
+  font-family: var(--gyu-fuente);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--gyu-titulo);
+}
+
+.gyu-modal-titulo span {
+  font-family: var(--gyu-fuente);
+  font-size: 14px;
+  color: var(--gyu-subtitulo);
+}
+
+.gyu-modal .jqx-window-content {
+  box-sizing: border-box !important;
+  padding: 20px !important;
+  font-family: var(--gyu-fuente) !important;
+  background-color: var(--gyu-fondo-panel) !important;
+  border: none !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+}
+
+.gyu-modal .jqx-window-close-button-background {
+  top: 16px !important;
+  right: 18px !important;
+  cursor: pointer !important;
+  background-color: transparent !important;
+  border: none !important;
+}
+
+.gyu-modal .jqx-window-close-button {
+  width: 20px !important;
+  height: 20px !important;
+  cursor: pointer !important;
+  opacity: 0.6;
+  filter: grayscale(1);
+  transform: scale(1.35);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.gyu-modal .jqx-window-close-button:hover {
+  opacity: 1;
+  transform: scale(1.5);
+}
+
+body:has(.gyu-modal) .jqx-window-modal {
+  background-color: var(--gyu-overlay) !important;
+  backdrop-filter: blur(2px) !important;
+  -webkit-backdrop-filter: blur(2px) !important;
+  opacity: 1 !important;
+}

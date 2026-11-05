@@ -1,0 +1,76 @@
+.gyu-media-tabs {
+  display: flex;
+  justify-content: flex-start;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.gyu-media-tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  color: var(--gyu-texto-3);
+  background-color: var(--gyu-fondo);
+  border: 1px solid var(--gyu-linea);
+  border-radius: var(--gyu-radio);
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+}
+
+.gyu-media-tab:hover {
+  color: var(--gyu-texto-1);
+  background-color: var(--gyu-fondo-2);
+  border-color: var(--gyu-linea-fuerte);
+}
+
+.gyu-media-tab-activo,
+.gyu-media-tab-activo:hover {
+  color: var(--gyu-info);
+  background-color: var(--gyu-info-soft);
+  border-color: var(--gyu-info-soft);
+}
+
+.gyu-dropzone {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 130px;
+  padding: 18px 14px;
+  text-align: center;
+  background-color: var(--gyu-fondo-3);
+  border: 1.5px dashed var(--gyu-linea-fuerte);
+  border-radius: var(--gyu-radio-m);
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.gyu-dropzone:hover {
+  background-color: var(--gyu-fondo-2);
+  border-color: var(--gyu-primary);
+}
+
+.gyu-dropzone-icono {
+  margin-bottom: 6px;
+  font-size: 26px;
+  color: var(--gyu-texto-4);
+}
+
+.gyu-dropzone-texto {
+  margin: 0;
+  font-family: var(--gyu-fuente);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--gyu-texto-2);
+}
+
+.gyu-dropzone-ayuda {
+  margin-top: 2px;
+  font-family: var(--gyu-fuente);
+  font-size: 11px;
+  color: var(--gyu-texto-4);
+}

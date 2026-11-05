@@ -1,0 +1,171 @@
+.gyu-listado {
+  margin-top: 10px;
+  padding: 14px;
+  background-color: var(--gyu-fondo);
+  border: 1px solid var(--gyu-linea-suave);
+  border-radius: var(--gyu-radio-m);
+  box-shadow: 0 3px 12px rgba(15, 23, 42, 0.05);
+}
+
+.gyu-listado-cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.gyu-listado-titulo {
+  margin: 0;
+  font-family: var(--gyu-fuente);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: var(--gyu-texto-1);
+}
+
+.gyu-listado-acciones {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 4px;
+}
+
+.gyu-listado-cuerpo {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.gyu-tarjeta {
+  margin: 4px;
+  padding: 12px;
+  background-color: var(--gyu-fondo);
+  border: 1px solid var(--gyu-linea);
+  border-radius: var(--gyu-radio-m);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.gyu-tarjeta .form-group {
+  margin-bottom: 18px;
+}
+
+.gyu-tarjeta .row:last-child .form-group {
+  margin-bottom: 0;
+}
+
+.gyu-tarjeta-titulo {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  border: 0;
+  border-bottom: 1px solid var(--gyu-linea);
+}
+
+.gyu-tarjeta-titulo h5 {
+  margin: 0 0 4px;
+  font-family: var(--gyu-fuente);
+  font-size: 12.5px;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--gyu-texto);
+}
+
+.gyu-tarjeta-titulo span {
+  font-family: var(--gyu-fuente);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: normal;
+  color: var(--gyu-texto-3);
+}
+
+.gyu-tarjeta-cuerpo {
+  margin-top: 12px;
+}
+
+.gyu-aviso {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px 18px;
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: var(--gyu-primary-ink);
+  background-color: var(--gyu-primary-soft);
+  border-radius: var(--gyu-radio-l);
+}
+
+.gyu-aviso-icono {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+}
+
+.gyu-aviso-icono svg {
+  width: 28px;
+  height: 28px;
+}
+
+.gyu-aviso-texto {
+  flex: 1;
+}
+
+.gyu-aviso-texto strong {
+  font-weight: 700;
+}
+
+.gyu-opcion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  background-color: var(--gyu-fondo);
+  border: 1px solid var(--gyu-linea);
+  border-radius: var(--gyu-radio-m);
+  transition: border-color 0.2s;
+}
+
+.gyu-opcion:hover {
+  border-color: var(--gyu-linea-fuerte);
+}
+
+.gyu-opcion-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.gyu-opcion-icono {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  font-size: 16px;
+  color: var(--gyu-info);
+  background-color: var(--gyu-info-soft);
+  border-radius: var(--gyu-radio);
+}
+
+.gyu-opcion-titulo {
+  margin: 0;
+  font-family: var(--gyu-fuente);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--gyu-texto);
+}
+
+.gyu-opcion-subtitulo {
+  margin: 4px 0 0;
+  font-family: var(--gyu-fuente);
+  font-size: 10px;
+  color: var(--gyu-texto-3);
+}
