@@ -17,6 +17,8 @@ Junto a este `SKILL.md`:
 | `assets/ginyu.min.js` | JS listo para usar. Requiere jQuery. |
 | `assets/ginyu.css`, `assets/ginyu.js` | Versiones sin minificar, para leer o depurar. |
 | `componentes.md` | Lista completa de clases y funciones JS. Leerla antes de escribir HTML. |
+| `iconos.md` | Índice de los íconos SVG (id, nombre, categoría, etiquetas). Leerlo cuando la vista necesite un ícono. |
+| `iconos.json` | El código `svg` de cada ícono. Buscar por `id` y pegarlo tal cual. |
 
 ## Agregar Ginyu a un proyecto
 
@@ -45,6 +47,7 @@ El CSS importa DM Sans (Google Fonts) e iziToast (jsDelivr). El JS necesita jQue
 14. **Fechas:** `gyu-input` de tipo `date` o `datetime-local` con el ícono de calendario de `componentes.md`.
 15. **Un solo Ginyu por página.** No cargar el CSS o JS de una versión anterior junto a este. Si un CSS del proyecto hace `@import` de la versión anterior, quitar esa línea.
 16. **`<style>` propios:** se eliminan. Solo se conservan si necesitan `@keyframes`, `:hover`, pseudo-elementos o `@media`, y se avisa de ello.
+17. **Íconos:** usar los SVG de `iconos.json` (índice en `iconos.md`). No inventar ni redibujar; si falta uno, avisar al usuario.
 
 ## Estructura de una vista
 
