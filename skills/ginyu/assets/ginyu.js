@@ -212,7 +212,7 @@
         }
     };
 
-    $(document).on('mousedown', '.gyu-input[type="date"]', function (e) {
+    $(document).on('mousedown', '.gyu-input[type="date"], .gyu-input[type="datetime-local"]', function (e) {
         var zona = 40;
         var rect = this.getBoundingClientRect();
         if (e.clientX < rect.right - zona) return;
@@ -236,7 +236,7 @@
         }
     });
 
-    $(document).on('blur', '.gyu-input[type="date"]', function () {
+    $(document).on('blur', '.gyu-input[type="date"], .gyu-input[type="datetime-local"]', function () {
         $(this).data('gyuPickerAbierto', false);
     });
 

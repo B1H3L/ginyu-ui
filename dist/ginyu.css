@@ -982,13 +982,15 @@
   background-size: 14px 14px;
 }
 
-.gyu-input[type="date"] {
+.gyu-input[type="date"],
+.gyu-input[type="datetime-local"] {
   -webkit-appearance: none;
   -moz-appearance: textfield;
   appearance: none;
 }
 
-.gyu-input[type="date"]::-webkit-calendar-picker-indicator {
+.gyu-input[type="date"]::-webkit-calendar-picker-indicator,
+.gyu-input[type="datetime-local"]::-webkit-calendar-picker-indicator {
   position: absolute;
   right: 0;
   width: 40px;

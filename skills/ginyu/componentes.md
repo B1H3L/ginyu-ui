@@ -50,7 +50,7 @@ Variables por botón: `--gyu-btn-min-height`, `--gyu-btn-padding-x`, `--gyu-btn-
 
 | Clase | Uso |
 |---|---|
-| `gyu-input`, `gyu-select`, `gyu-textarea`, `gyu-label` | Controles. `gyu-input[type=date]` abre el selector con un clic en el borde derecho. |
+| `gyu-input`, `gyu-select`, `gyu-textarea`, `gyu-label` | Controles. `gyu-input[type=date]` y `gyu-input[type=datetime-local]` abren el selector con un clic en el borde derecho. |
 | `gyu-select-jqx` | jqxDropDownButton con aspecto de select. |
 | `gyu-check-lista`, `gyu-check`, `gyu-check-input`, `gyu-check-card`, `gyu-check-indicador` | Casillas tipo tarjeta. |
 | `gyu-switch`, `gyu-switch-slider`, `gyu-switch-compact`, `gyu-switch-celda` | Interruptor. |
