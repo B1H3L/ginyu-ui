@@ -1742,8 +1742,7 @@ body:has(.gyu-modal) .jqx-window-modal {
   z-index: 2001;
   display: none;
   box-sizing: border-box;
-  min-width: 220px;
-  padding: 6px 0 8px;
+  padding: 4px 0;
   background: var(--gyu-fondo);
   border: 1px solid var(--gyu-sel-panel-borde);
   border-radius: var(--gyu-sel-panel-radio);
@@ -1828,7 +1827,7 @@ body:has(.gyu-modal) .jqx-window-modal {
 
 .gyu-seleccion-opciones {
   max-height: 220px;
-  padding: 4px 0;
+  padding: 0;
   overflow-y: auto;
   scrollbar-gutter: stable;
 }

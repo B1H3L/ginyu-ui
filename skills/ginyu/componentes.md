@@ -22,6 +22,8 @@ Todas las clases llevan el prefijo `gyu-`.
 
 `gyu-listado` (`-cabecera`, `-titulo`, `-acciones`, `-cuerpo`), `gyu-tarjeta` (`-titulo`, `-cuerpo`), `gyu-aviso` (`-icono`, `-texto`), `gyu-opcion` (`-info`, `-icono`, `-titulo`, `-subtitulo`), `gyu-tabla-caja`.
 
+`gyu-aviso` ya mide `width: 100%`: no ponerle margen horizontal (genera scroll horizontal), solo `margin: 0 0 Npx`. `gyu-opcion` es la tarjeta con ícono, título, subtítulo y un `gyu-switch` a la derecha.
+
 ## Botones
 
 | Eje | Clases |
@@ -76,6 +78,8 @@ $('#estado').gyuSeleccion({ placeholder: 'Todos', ancho: '260px' });
 ```
 
 Opciones: `placeholder`, `ancho`, `textoTodos`, `textoSeleccionados` (`{count}`), `maxItemsRotulo`, `buscadorPlaceholder`, `umbralBuscador`. Dispara `change` en el `<select>`. El `<select>` oculto sigue siendo la fuente: si cambias opciones, valor (`val()`) o `disabled` por código, llama `$('#estado').trigger('gyu.actualizar')`. Tras un reset de formulario hazlo dentro de un `setTimeout`. Imagen por opción: `<option data-imagen="url">`.
+
+El panel mide siempre lo mismo que el combo (sin `min-width`). Si el código oculta o muestra el `<select>` (`.hide()`, `.show()`), no sirve: el combo es el `div.gyu-seleccion` que lo envuelve. Envolver el `<select>` en un `div` propio y alternar ese `div`. Si el `<select>` lleva `<option value="">Seleccionar</option>` y además `placeholder`, el texto sale duplicado: dejar solo el `placeholder`, o la opción vacía si el valor vacío debe poder elegirse.
 
 ## JS
 
