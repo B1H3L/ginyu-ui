@@ -5,15 +5,15 @@ Sistema de diseño. Mismo API que Bootstrap 6 donde Bootstrap ya resolvió el pr
 ## Uso por CDN
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ginyu-ui@1.0.1/dist/ginyu.min.css">
-<script src="https://cdn.jsdelivr.net/npm/ginyu-ui@1.0.1/dist/ginyu.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ginyu-ui@1.0.2/dist/ginyu.min.css">
+<script src="https://cdn.jsdelivr.net/npm/ginyu-ui@1.0.2/dist/ginyu.min.js"></script>
 ```
 
 Desde GitHub, con la etiqueta de versión:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/B1H3L/ginyu-ui@v1.0.1/dist/ginyu.min.css">
-<script src="https://cdn.jsdelivr.net/gh/B1H3L/ginyu-ui@v1.0.1/dist/ginyu.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/B1H3L/ginyu-ui@v1.0.2/dist/ginyu.min.css">
+<script src="https://cdn.jsdelivr.net/gh/B1H3L/ginyu-ui@v1.0.2/dist/ginyu.min.js"></script>
 ```
 
 Quien solo use botones, formularios, cabecera y layout carga únicamente el CSS. El JS es para diálogos, toasts, tabs, selector desplegable, estado vacío y bloqueo de botón en AJAX.
@@ -60,6 +60,12 @@ npx skills add B1H3L/ginyu-ui
 ```
 
 El skill queda en `~/.claude/skills/ginyu/` con el CSS y el JS dentro de `assets/`.
+
+### Actualización de la skill
+
+La skill trae un archivo `VERSION`. Antes de usar Ginyu, Claude compara ese número con el publicado en GitHub y, si hay uno más nuevo, pregunta si actualizar. Al aceptar ejecuta `actualizar.ps1` (Windows) o `actualizar.sh` (macOS y Linux), que reemplaza la carpeta de la skill por la publicada. Para forzarlo a mano: `powershell -File ~/.claude/skills/ginyu/actualizar.ps1` o `bash ~/.claude/skills/ginyu/actualizar.sh [etiqueta]`.
+
+Si la skill se instaló como plugin, se actualiza con `/plugin marketplace update ginyu` y `/plugin update ginyu-ui@ginyu`.
 
 ## Instalar como plugin de Claude Code
 

@@ -7,6 +7,17 @@ description: Usar el sistema de diseño Ginyu (clases gyu-) al construir o migra
 
 Sistema de diseño con la lógica de Bootstrap 6 donde Bootstrap ya resolvió el problema (botones con estilo + theme, tamaños) y componentes propios en español donde hace falta (grilla, cabecera, ruta, cuerpo). Prefijo de clases: `gyu-`.
 
+## Versión de la skill
+
+Antes de usar Ginyu, una vez por sesión:
+
+1. Leer `VERSION`, que está junto a este `SKILL.md`. Si no existe, la versión local es `0`.
+2. Pedir la versión publicada: `curl -fsSL https://raw.githubusercontent.com/B1H3L/ginyu-ui/main/skills/ginyu/VERSION`. Si falla (sin red), seguir sin avisar.
+3. Si la publicada es mayor que la local, preguntar con `AskUserQuestion` (cargarla con ToolSearch `select:AskUserQuestion` si no está disponible), una sola pregunta, `multiSelect: false`, header `Skill`, pregunta "La skill ginyu tiene una versión nueva (<publicada>, tienes <local>). ¿Actualizo?" y estas opciones:
+   - `Sí, actualizar (Recomendado)`: ejecutar `actualizar.ps1` (Windows: `powershell -NoProfile -ExecutionPolicy Bypass -File <carpeta de la skill>\actualizar.ps1`) o `actualizar.sh` (macOS y Linux), releer este `SKILL.md` y `componentes.md`, y avisar de qué versión a qué versión se pasó. Si el proyecto tiene copias de `ginyu.css`, `ginyu.js` o sus `.min` fuera de la skill, ofrecer reemplazarlas por las de `assets/`.
+   - `No, ahora no`: seguir con la versión local y no volver a preguntar en esta sesión.
+4. Si la carpeta de la skill está dentro de un plugin (la ruta contiene `plugins`), no usar el script: indicar `/plugin marketplace update ginyu` y `/plugin update ginyu-ui@ginyu`.
+
 ## Archivos
 
 Junto a este `SKILL.md`:

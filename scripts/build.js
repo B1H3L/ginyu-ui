@@ -32,5 +32,8 @@ const assets = path.join(raiz, 'skills', 'ginyu', 'assets');
 fs.mkdirSync(assets, { recursive: true });
 ['ginyu.css', 'ginyu.min.css', 'ginyu.js', 'ginyu.min.js'].forEach(f => fs.copyFileSync(path.join(dist, f), path.join(assets, f)));
 
+const version = JSON.parse(fs.readFileSync(path.join(raiz, 'package.json'), 'utf8')).version;
+fs.writeFileSync(path.join(raiz, 'skills', 'ginyu', 'VERSION'), version + '\n');
+
 const kb = f => (fs.statSync(path.join(dist, f)).size / 1024).toFixed(1) + ' KB';
 ['ginyu.css', 'ginyu.min.css', 'ginyu.js', 'ginyu.min.js'].forEach(f => console.log(f.padEnd(15), kb(f)));

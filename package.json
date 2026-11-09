@@ -1,6 +1,6 @@
 {
   "name": "ginyu-ui",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Ginyu UI: sistema de diseño con API tipo Bootstrap 6 (estilo + theme) y componentes propios.",
   "main": "dist/ginyu.min.js",
   "style": "dist/ginyu.min.css",
