@@ -16,9 +16,8 @@ principal() {
     local antes="0"
     [ -f "$destino/VERSION" ] && antes="$(tr -d '[:space:]' < "$destino/VERSION")"
 
-    local tmp
     tmp="$(mktemp -d)"
-    trap 'rm -rf "$tmp"' EXIT
+    trap 'rm -rf "${tmp:-}"' EXIT
 
     curl -fsSL "https://codeload.github.com/$repo/tar.gz/$ref" -o "$tmp/repo.tar.gz"
     tar -xzf "$tmp/repo.tar.gz" -C "$tmp"
