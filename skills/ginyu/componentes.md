@@ -84,7 +84,6 @@ Estilos para FullCalendar 1.6 con la cabecera nativa oculta y una barra propia (
 | `gyu-calendario-cuerpo` | Contenedor con scroll del calendario. |
 | `gyu-calendario-evento-hoy` | Se agrega al evento del día actual. |
 | `gyu-calendario-evento-cab`, `-titulo`, `-detalle`, `-pie`, `-valor` | Piezas de la tarjeta de evento que arma `eventRender`. |
-| `gyu-calendario-punto` + `-activo` / `-inactivo` | Punto de estado del evento. |
 
 ```html
 <div class="gyu-calendario-caja">

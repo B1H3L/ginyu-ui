@@ -64,13 +64,21 @@
   font-family: inherit;
 }
 
-.gyu-calendario .fc-widget-header {
-  padding: 10px 0;
-  font-size: 14px;
-  font-weight: 700;
+.gyu-calendario .fc-sun,
+.gyu-calendario .fc-sat {
   color: var(--gyu-texto-1);
-  background: transparent;
-  border: 0;
+}
+
+.gyu-calendario thead tr.fc-first,
+.gyu-calendario thead tr.fc-first th,
+.gyu-calendario .fc-border-separate thead th {
+  background-color: var(--gyu-fondo) !important;
+  color: var(--gyu-texto-1) !important;
+  border-color: var(--gyu-linea) !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  line-height: 20px;
+  padding: 12px 0;
 }
 
 .gyu-calendario .fc-widget-content {
@@ -82,36 +90,44 @@
   background: var(--gyu-fondo-2);
 }
 
-.gyu-calendario .fc-day-number {
-  padding: 4px 6px 0 0;
+.gyu-calendario .fc-week .fc-day > div .fc-day-number {
+  min-width: 0;
+  margin: 4px 6px 0 0;
+  padding: 0;
   font-size: 10px;
   font-weight: 700;
+  line-height: 18px;
   color: var(--gyu-texto-1);
+  text-align: center;
+  background: transparent;
 }
 
-.gyu-calendario .fc-state-highlight,
-.gyu-calendario .fc-state-highlight:hover {
+.gyu-calendario .fc-week .fc-day:hover .fc-day-number {
+  color: var(--gyu-texto-1);
+  background: transparent;
+}
+
+.gyu-calendario .fc-week .fc-day.fc-state-highlight,
+.gyu-calendario .fc-week .fc-day.fc-state-highlight:hover {
   background: var(--gyu-primary-soft);
 }
 
-.gyu-calendario .fc-state-highlight .fc-day-number {
+.gyu-calendario .fc-week .fc-day.fc-state-highlight > div .fc-day-number,
+.gyu-calendario .fc-week .fc-day.fc-state-highlight:hover .fc-day-number {
   min-width: 18px;
   height: 18px;
   margin: 4px 4px 0 0;
-  padding: 0;
-  font-size: 10px;
-  line-height: 18px;
   color: #fff;
-  text-align: center;
   background: var(--gyu-primary);
   border-radius: 50%;
 }
 
-.gyu-calendario .fc-other-month .fc-day-number {
+.gyu-calendario .fc-week .fc-day.fc-other-month > div .fc-day-number {
   opacity: 0.45;
 }
 
 .gyu-calendario .fc-event {
+  margin-bottom: 5px !important;
   padding: 8px 10px;
   color: var(--gyu-texto-1) !important;
   cursor: default;
@@ -137,40 +153,49 @@
 
 .gyu-calendario-evento-cab {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 6px;
 }
 
 .gyu-calendario-evento-titulo {
+  display: -webkit-box;
   flex: 1 1 auto;
   min-width: 0;
-  font-size: 11px;
+  overflow: hidden;
+  font-size: 10px;
+  line-height: 1.25;
   text-transform: uppercase;
   color: var(--gyu-primary-text);
+  overflow-wrap: anywhere;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
 }
 
-.gyu-calendario-punto {
+.gyu-calendario-evento-cab .gyu-btn-icon {
+  --gyu-btn-min-height: 18px;
   flex: none;
-  width: 8px;
-  height: 8px;
-  background: var(--gyu-secondary);
-  border-radius: 50%;
+  margin: -3px 0;
 }
 
-.gyu-calendario-punto-activo {
-  background: var(--gyu-success);
+.gyu-calendario-evento-cab .gyu-btn-icon svg {
+  width: 11px;
+  height: 11px;
 }
 
-.gyu-calendario-punto-inactivo {
-  background: var(--gyu-danger);
-}
-
-.gyu-calendario-evento-detalle {
-  margin: 4px 0 6px;
+.gyu-calendario .gyu-calendario-evento-detalle {
+  margin: 0 0 4px;
   padding-left: 14px;
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 400;
+  line-height: 1.2;
   color: var(--gyu-texto-1);
+}
+
+.gyu-calendario .gyu-calendario-evento-detalle li {
+  margin: 0;
+  padding: 0;
+  line-height: 1.2;
 }
 
 .gyu-calendario-evento-pie {
@@ -192,4 +217,6 @@
 .gyu-calendario-evento-pie .gyu-badge {
   padding: 1px 8px;
   font-size: 9px;
+  color: var(--gyu-c-contrast, #fff);
+  background-color: var(--gyu-c, var(--gyu-primary));
 }
