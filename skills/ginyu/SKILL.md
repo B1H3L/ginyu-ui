@@ -43,7 +43,7 @@ El CSS importa DM Sans (Google Fonts) e iziToast (jsDelivr). El JS necesita jQue
 ## Reglas
 
 1. **Botón = estilo + theme.** `gyu-btn-solid|outline|subtle|text|link` más `gyu-theme-{primary,secondary,success,danger,warning,info,accent,inverse}`. Sin theme es primary. Sin tamaño es mediano (38px). Tamaños: `gyu-btn-xs`, `-sm`, `-lg`. Solo ícono: `gyu-btn-icon` con `aria-label`.
-2. **Solo existen las clases de `componentes.md`.** No inventar clases de layout (flex, gap, márgenes, textos): se resuelven con `style=""` en el elemento.
+2. **Solo existen las clases de `componentes.md`.** No inventar clases de Ginyu para layout (flex, gap, márgenes, textos): los ajustes puntuales se resuelven con `style=""` en el elemento. Si una vista necesita clases propias, hover o `@media`, van en un `<style>` de esa vista (regla 16), no en los archivos de Ginyu.
 3. **Ancho completo de un botón:** no hay clase; se ajusta con `style`.
 4. **Una sola cabecera de página:** `gyu-cabecera` con un `<h4>` y un `gyu-ruta`.
 5. **Grillas jqxGrid:** la altura total y las alturas de cabecera y filas (`columnsheight`, `rowsheight`) las define cada vista.
@@ -57,8 +57,9 @@ El CSS importa DM Sans (Google Fonts) e iziToast (jsDelivr). El JS necesita jQue
 13. **Grilla que llena la pantalla:** contenedor `flex: 1 1 0` con `ResizeObserver` y `ginyuEmptyState` (receta en `componentes.md`).
 14. **Fechas:** `gyu-input` de tipo `date` o `datetime-local` con el ícono de calendario de `componentes.md`.
 15. **Un solo Ginyu por página.** No cargar el CSS o JS de una versión anterior junto a este. Si un CSS del proyecto hace `@import` de la versión anterior, quitar esa línea.
-16. **`<style>` propios:** se eliminan. Solo se conservan si necesitan `@keyframes`, `:hover`, pseudo-elementos o `@media`, y se avisa de ello.
+16. **`<style>`:** se eliminan solo las reglas globales o del sistema anterior (las que reestilizan `ginyu-*`, `jqx-*`, `.btn`, `.form-control`, `html`/`body` o repiten lo que Ginyu ya resuelve), y solo después de comprobar que la clase `gyu-*` equivalente produce el mismo resultado. Se conservan los `<style>` propios de una vista (clases que solo existen ahí, `:hover`, `@media`, `@keyframes`, pseudo-elementos, selectores sobre contenido de librerías) y los ajustes únicos con `!important` sobre componentes de Ginyu: son decisiones de esa vista. Se dejan en un `<style>` al inicio de la vista, con su mismo orden, traducidos a clases `gyu-*`, y se avisa de ello. No se vuelcan a `style=""` inline. Ante la duda, conservar.
 17. **Íconos:** usar los SVG de `iconos.json` (índice en `iconos.md`). No inventar ni redibujar; si falta uno, avisar al usuario.
+18. **Orden y posición:** al migrar una vista se respeta el orden y la alineación originales (qué va primero, qué queda a la izquierda o a la derecha, qué botón junto a cuál). No reordenar ni recolocar.
 
 ## Estructura de una vista
 
@@ -83,6 +84,7 @@ El CSS importa DM Sans (Google Fonts) e iziToast (jsDelivr). El JS necesita jQue
 1. Cargar el CSS y el JS de Ginyu en la vista.
 2. Envolver el contenido en `gyu-pagina` > `gyu-cabecera` + `gyu-cuerpo`.
 3. Reemplazar los botones, formularios, tablas, modales y alertas por sus equivalentes de `componentes.md`.
-4. Mover los `style` y `<style>` de adorno a las clases de Ginyu; dejar `style=""` solo para ajustes puntuales de layout.
+4. Mover a clases de Ginyu los `style` y los `<style>` que son de adorno global (botones, inputs, cabeceras, modales), pero solo después de comprobar que la clase `gyu-*` da el mismo resultado. Dejar `style=""` solo para ajustes puntuales de layout y conservar los `<style>` propios de la vista y los ajustes con `!important` (regla 16).
    Los tamaños que Ginyu no tiene (por ejemplo controles de 30px) se dejan inline con `style=""` y se avisan al usuario.
-5. Comprobar que toda clase `gyu-*` usada exista en `assets/ginyu.css`.
+5. Respetar el orden y la posición originales de los elementos (regla 18).
+6. Comprobar que toda clase `gyu-*` usada exista en `assets/ginyu.css`.
