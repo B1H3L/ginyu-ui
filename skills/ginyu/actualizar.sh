@@ -37,5 +37,4 @@ principal() {
     echo "Skill ginyu actualizada: $antes -> $despues"
 }
 
-principal "$@"
-exit $?
+{ principal "$@"; exit $?; }
