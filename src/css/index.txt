@@ -23,4 +23,5 @@ _sidebar.css
 _dialog.css
 _auth-error.css
 _toast.css
+_calendario.css
 _utilities.css

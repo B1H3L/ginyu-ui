@@ -69,6 +69,43 @@ Variables por botón: `--gyu-btn-min-height`, `--gyu-btn-padding-x`, `--gyu-btn-
 | `gyu-tabs`, `gyu-tabs-linea`, `gyu-fade-in` | Estilo para jqxTabs. |
 | `gyu-auth-error`, `gyu-auth-error-icono` | Pantalla de acceso denegado. Usa `gyu-dialogo-titulo` y `gyu-dialogo-texto` para el texto. |
 
+## Calendario
+
+Estilos para FullCalendar 1.6 con la cabecera nativa oculta y una barra propia (`header: {left:'', center:'', right:''}`). El título sale de `view.title` en `viewRender`; anterior, siguiente, hoy y cambio de vista se llaman con `fullCalendar('prev' | 'next' | 'today' | 'changeView', vista)`.
+
+| Clase | Uso |
+|---|---|
+| `gyu-calendario` | Sobre el `<div>` donde se llama a `fullCalendar()`. |
+| `gyu-calendario-caja` | Tarjeta blanca que contiene barra y calendario. |
+| `gyu-calendario-barra`, `gyu-calendario-barra-der` | Fila de controles y su grupo derecho. |
+| `gyu-calendario-titulo` | Mes y año. |
+| `gyu-calendario-nav` | Con `gyu-btn-solid gyu-btn-icon`: botón redondo anterior/siguiente. |
+| `gyu-calendario-vistas` | Grupo Hoy / Semana / Mes. La vista activa lleva `gyu-btn-solid`, las demás `gyu-btn-text`. |
+| `gyu-calendario-cuerpo` | Contenedor con scroll del calendario. |
+| `gyu-calendario-evento-hoy` | Se agrega al evento del día actual. |
+| `gyu-calendario-evento-cab`, `-titulo`, `-detalle`, `-pie`, `-valor` | Piezas de la tarjeta de evento que arma `eventRender`. |
+| `gyu-calendario-punto` + `-activo` / `-inactivo` | Punto de estado del evento. |
+
+```html
+<div class="gyu-calendario-caja">
+    <div class="gyu-calendario-barra">
+        <button id="btnAnterior" type="button" class="gyu-btn-solid gyu-btn-icon gyu-calendario-nav" aria-label="Anterior"></button>
+        <span id="calTitulo" class="gyu-calendario-titulo"></span>
+        <button id="btnSiguiente" type="button" class="gyu-btn-solid gyu-btn-icon gyu-calendario-nav" aria-label="Siguiente"></button>
+        <div class="gyu-calendario-barra-der">
+            <div id="calVistas" class="gyu-calendario-vistas">
+                <button type="button" data-vista="hoy" class="gyu-btn-text gyu-btn-sm">Hoy</button>
+                <button type="button" data-vista="basicWeek" class="gyu-btn-text gyu-btn-sm">Semana</button>
+                <button type="button" data-vista="month" class="gyu-btn-solid gyu-btn-sm">Mes</button>
+            </div>
+        </div>
+    </div>
+    <div class="gyu-calendario-cuerpo gyu-scroll">
+        <div id="calendario" class="gyu-calendario"></div>
+    </div>
+</div>
+```
+
 ## Selector desplegable
 
 Sustituye un `<select>` por un panel con buscador. Con `multiple` agrega casillas y las acciones Todos y Limpiar.
