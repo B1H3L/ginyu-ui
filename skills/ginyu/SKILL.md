@@ -55,11 +55,12 @@ El CSS importa DM Sans (Google Fonts) e iziToast (jsDelivr). El JS necesita jQue
 11. **Sin subtítulo bajo el `<h4>` de la cabecera de página.** En `gyu-modal-titulo` sí puede ir una línea de apoyo.
 12. **Todo `<select>` usa `gyu-select` y `gyuSeleccion`.** Si el código cambia opciones, valor o `disabled`, sincronizar con `trigger('gyu.actualizar')`.
 13. **Grilla que llena la pantalla:** contenedor `flex: 1 1 0` con `ResizeObserver` y `ginyuEmptyState` (receta en `componentes.md`).
-14. **Fechas:** `gyu-input` de tipo `date` o `datetime-local` con el ícono de calendario de `componentes.md`.
+14. **Fechas:** `<input type="date" class="gyu-input">` con el ícono de calendario de `componentes.md`. Ginyu le pone solo el selector de fecha nuevo, no hay que activar nada. No usar jqxDateTimeInput. Solo `datetime-local` (fecha y hora) sigue siendo nativo.
 15. **Un solo Ginyu por página.** No cargar el CSS o JS de una versión anterior junto a este. Si un CSS del proyecto hace `@import` de la versión anterior, quitar esa línea.
 16. **`<style>`:** se eliminan solo las reglas globales o del sistema anterior (las que reestilizan `ginyu-*`, `jqx-*`, `.btn`, `.form-control`, `html`/`body` o repiten lo que Ginyu ya resuelve), y solo después de comprobar que la clase `gyu-*` equivalente produce el mismo resultado. Se conservan los `<style>` propios de una vista (clases que solo existen ahí, `:hover`, `@media`, `@keyframes`, pseudo-elementos, selectores sobre contenido de librerías) y los ajustes únicos con `!important` sobre componentes de Ginyu: son decisiones de esa vista. Se dejan en un `<style>` al inicio de la vista, con su mismo orden, traducidos a clases `gyu-*`, y se avisa de ello. No se vuelcan a `style=""` inline. Ante la duda, conservar.
 17. **Íconos:** usar los SVG de `iconos.json` (índice en `iconos.md`). No inventar ni redibujar; si falta uno, avisar al usuario.
 18. **Orden y posición:** al migrar una vista se respeta el orden y la alineación originales (qué va primero, qué queda a la izquierda o a la derecha, qué botón junto a cuál). No reordenar ni recolocar.
+19. **Toda jqxGrid lleva `ginyuEmptyState`, sin excepción:** las de la página, las de modales, las de tarjetas y las de un dropdown. Antes de entregar, listar todas las grillas de la vista y de sus parciales (modales cargados por AJAX incluidos) y comprobar que cada una lo llama. Nunca dejar el "No data to display" de jqx, ni armar un vacío propio (imagen + `<h3>`, `#no-data`, `display:none`/`show()` de un bloque): se elimina y se reemplaza por el de Ginyu. Si el vacío tenía un mensaje propio ("Registre la atención para…"), pasarlo como `titulo`/`subtitulo`; si cambia con el estado, actualizar el texto de `.gyu-vacio-titulo` y `.gyu-vacio-desc`. `top` = alto de cabecera de la grilla (más la fila de filtros si la hay).
 
 ## Estructura de una vista
 
@@ -88,3 +89,4 @@ El CSS importa DM Sans (Google Fonts) e iziToast (jsDelivr). El JS necesita jQue
    Los tamaños que Ginyu no tiene (por ejemplo controles de 30px) se dejan inline con `style=""` y se avisan al usuario.
 5. Respetar el orden y la posición originales de los elementos (regla 18).
 6. Comprobar que toda clase `gyu-*` usada exista en `assets/ginyu.css`.
+7. Comprobar que cada jqxGrid de la vista y de sus parciales llama a `ginyuEmptyState` y que no quedó ningún vacío propio (regla 19).

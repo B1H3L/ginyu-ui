@@ -576,4 +576,320 @@
         if (e.key === 'Escape') $('.gyu-seleccion.gyu-abierto').removeClass('gyu-abierto');
     });
 
+    var FECHA_DEFECTOS = {
+        monthsFull: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        weekdaysShort: ['dom', 'lun', 'mar', 'mié', 'jue', 'vie', 'sáb'],
+        todayText: 'Hoy',
+        closeText: 'Cerrar',
+        prevText: 'Mes anterior',
+        nextText: 'Mes siguiente',
+        closeOnSelect: true,
+        firstDay: 0,
+        placement: 'auto',
+        size: 'normal',
+        onSelect: null
+    };
+
+    var fechaUid = 0;
+
+    function fechaCero(n) {
+        return n < 10 ? '0' + n : '' + n;
+    }
+
+    function fechaTexto(d) {
+        if (!d || !(d instanceof Date) || isNaN(d.getTime())) return '';
+        return d.getFullYear() + '-' + fechaCero(d.getMonth() + 1) + '-' + fechaCero(d.getDate());
+    }
+
+    function fechaLeer(str) {
+        if (!str || typeof str !== 'string') return null;
+        var p = str.trim().split('-');
+        if (p.length !== 3) return null;
+        var y = parseInt(p[0], 10);
+        var m = parseInt(p[1], 10) - 1;
+        var d = parseInt(p[2], 10);
+        if (isNaN(y) || isNaN(m) || isNaN(d)) return null;
+        var fecha = new Date(y, m, d);
+        if (fecha.getFullYear() === y && fecha.getMonth() === m && fecha.getDate() === d) return fecha;
+        return null;
+    }
+
+    function fechaIgual(a, b) {
+        return !!a && !!b &&
+            a.getFullYear() === b.getFullYear() &&
+            a.getMonth() === b.getMonth() &&
+            a.getDate() === b.getDate();
+    }
+
+    function GyuFecha(elemento, opciones) {
+        this.$input = $(elemento);
+        this.opciones = $.extend({}, FECHA_DEFECTOS, opciones);
+        this.ns = '.gyuFecha' + (++fechaUid);
+        this.opciones.min = this.opciones.min || fechaLeer(this.$input.attr('min'));
+        this.opciones.max = this.opciones.max || fechaLeer(this.$input.attr('max'));
+        this.seleccionada = fechaLeer(this.$input.val());
+        var inicial = this.seleccionada || new Date();
+        this.anio = inicial.getFullYear();
+        this.mes = inicial.getMonth();
+        this.$popover = null;
+        this.abierto = false;
+        this.iniciar();
+    }
+
+    GyuFecha.prototype = {
+        iniciar: function () {
+            var self = this;
+            if (this.$input.attr('type') === 'date') this.$input.attr('type', 'text');
+            this.$input.attr({ autocomplete: 'off', maxlength: 10 });
+            if (!this.$input.is('[data-gyu-fecha]')) this.$input.attr('data-gyu-fecha', '');
+            if (!this.$input.attr('placeholder')) this.$input.attr('placeholder', 'aaaa-mm-dd');
+
+            this.$input.on('click' + this.ns + ' focus' + this.ns, function (e) {
+                e.stopPropagation();
+                self.open();
+            });
+
+            this.$input.on('keydown' + this.ns, function (e) {
+                if (e.key === 'Escape') self.close();
+            });
+        },
+
+        construir: function () {
+            var self = this;
+            var o = this.opciones;
+            if (this.$popover) this.$popover.remove();
+
+            var clase = 'gyu-fecha' + (o.size === 'compact' ? ' gyu-fecha-compacto' : '');
+            var btnPie = o.size === 'compact' ? 'gyu-btn-xs' : 'gyu-btn-sm';
+
+            this.$popover = $(
+                '<div class="' + clase + '" style="display:none;" role="dialog">' +
+                    '<div class="gyu-fecha-encabezado">' +
+                        '<button type="button" class="gyu-fecha-nav gyu-fecha-anterior" aria-label="' + o.prevText + '">' +
+                            '<svg width="7" height="12" viewBox="0 0 7 12" fill="none"><path d="M6 11L1 6L6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+                        '</button>' +
+                        '<div class="gyu-fecha-titulo"><span class="gyu-fecha-titulo-mes"></span> <span class="gyu-fecha-titulo-anio"></span></div>' +
+                        '<button type="button" class="gyu-fecha-nav gyu-fecha-siguiente" aria-label="' + o.nextText + '">' +
+                            '<svg width="7" height="12" viewBox="0 0 7 12" fill="none"><path d="M1 1L6 6L1 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+                        '</button>' +
+                    '</div>' +
+                    '<div class="gyu-fecha-dias-semana"></div>' +
+                    '<div class="gyu-fecha-cuadricula"></div>' +
+                    '<div class="gyu-fecha-pie">' +
+                        '<button type="button" class="gyu-btn-solid ' + btnPie + ' gyu-fecha-hoy">' + o.todayText + '</button>' +
+                        '<button type="button" class="gyu-btn-subtle gyu-theme-secondary ' + btnPie + ' gyu-fecha-cerrar">' + o.closeText + '</button>' +
+                    '</div>' +
+                '</div>'
+            ).appendTo('body');
+
+            var $semana = this.$popover.find('.gyu-fecha-dias-semana');
+            for (var i = 0; i < 7; i++) {
+                $semana.append('<div class="gyu-fecha-dia-semana">' + o.weekdaysShort[(i + o.firstDay) % 7] + '</div>');
+            }
+
+            this.$popover.on('click', '.gyu-fecha-anterior', function (e) { e.stopPropagation(); self.prevMonth(); });
+            this.$popover.on('click', '.gyu-fecha-siguiente', function (e) { e.stopPropagation(); self.nextMonth(); });
+            this.$popover.on('click', '.gyu-fecha-hoy', function (e) { e.stopPropagation(); self.seleccionar(new Date()); });
+            this.$popover.on('click', '.gyu-fecha-cerrar', function (e) { e.stopPropagation(); self.close(); });
+            this.$popover.on('click', '.gyu-fecha-dia', function (e) {
+                e.stopPropagation();
+                var elegida = fechaLeer($(this).attr('data-fecha'));
+                if (elegida) self.seleccionar(elegida);
+            });
+            this.$popover.on('mousedown click', function (e) { e.stopPropagation(); });
+        },
+
+        dibujar: function () {
+            if (!this.$popover) return;
+            var o = this.opciones;
+            this.$popover.find('.gyu-fecha-titulo-mes').text(o.monthsFull[this.mes]);
+            this.$popover.find('.gyu-fecha-titulo-anio').text(this.anio);
+
+            var diasMes = new Date(this.anio, this.mes + 1, 0).getDate();
+            var inicio = new Date(this.anio, this.mes, 1).getDay() - o.firstDay;
+            if (inicio < 0) inicio += 7;
+            var diasPrevio = new Date(this.anio, this.mes, 0).getDate();
+            var hoy = new Date();
+            var self = this;
+            var html = '';
+
+            function dia(fecha, numero, extra) {
+                var clase = 'gyu-fecha-dia' + extra;
+                var bloqueado = !self.permitida(fecha);
+                if (fechaIgual(fecha, self.seleccionada)) clase += ' gyu-seleccionado';
+                if (bloqueado) clase += ' gyu-deshabilitado';
+                return '<button type="button" class="' + clase + '"' + (bloqueado ? ' disabled' : '') + ' data-fecha="' + fechaTexto(fecha) + '">' + numero + '</button>';
+            }
+
+            for (var p = inicio - 1; p >= 0; p--) {
+                html += dia(new Date(this.anio, this.mes - 1, diasPrevio - p), diasPrevio - p, ' gyu-fecha-dia-fuera');
+            }
+            for (var d = 1; d <= diasMes; d++) {
+                var actual = new Date(this.anio, this.mes, d);
+                html += dia(actual, d, fechaIgual(actual, hoy) ? ' gyu-fecha-dia-hoy' : '');
+            }
+            var total = inicio + diasMes;
+            var siguientes = (7 - (total % 7)) % 7;
+            if (total + siguientes < 35) siguientes += 7;
+            for (var n = 1; n <= siguientes; n++) {
+                html += dia(new Date(this.anio, this.mes + 1, n), n, ' gyu-fecha-dia-fuera');
+            }
+
+            this.$popover.find('.gyu-fecha-cuadricula').html(html);
+        },
+
+        permitida: function (fecha) {
+            var o = this.opciones;
+            var dia = new Date(fecha.getFullYear(), fecha.getMonth(), fecha.getDate());
+            if (o.min && dia < o.min) return false;
+            if (o.max && dia > o.max) return false;
+            return true;
+        },
+
+        posicionar: function () {
+            if (!this.$popover || !this.abierto) return;
+            var compacto = this.opciones.size === 'compact';
+            var pos = this.$input.offset();
+            var altoInput = this.$input.outerHeight();
+            var ancho = this.$popover.outerWidth() || (compacto ? 270 : 300);
+            var alto = this.$popover.outerHeight() || (compacto ? 260 : 300);
+            var anchoVentana = $(window).width();
+            var scroll = $(window).scrollTop();
+            var debajo = ($(window).height() + scroll) - (pos.top + altoInput);
+            var encima = pos.top - scroll;
+
+            var lugar = this.opciones.placement;
+            if (lugar === 'auto') lugar = (debajo < alto && encima > debajo) ? 'top' : 'bottom';
+
+            var top;
+            if (lugar === 'top') {
+                top = pos.top - alto - 8;
+                this.$popover.addClass('gyu-fecha-arriba');
+            } else {
+                top = pos.top + altoInput + 8;
+                this.$popover.removeClass('gyu-fecha-arriba');
+            }
+
+            var left = pos.left;
+            if (left + ancho > anchoVentana - 10) left = Math.max(10, anchoVentana - ancho - 20);
+            if (left < 10) left = 10;
+
+            this.$popover.css({ top: top + 'px', left: left + 'px' });
+        },
+
+        open: function () {
+            if (this.abierto || this.$input.prop('readonly') || this.$input.prop('disabled')) return;
+            var self = this;
+            $('.gyu-fecha').hide();
+
+            var leida = fechaLeer(this.$input.val());
+            var base = leida || new Date();
+            this.seleccionada = leida;
+            this.anio = base.getFullYear();
+            this.mes = base.getMonth();
+
+            if (!this.$popover) this.construir();
+            this.dibujar();
+            this.abierto = true;
+            this.$popover.show();
+            this.posicionar();
+
+            $(document).on('mousedown' + this.ns, function (e) {
+                if (!$(e.target).closest('.gyu-fecha').length && !$(e.target).is(self.$input)) self.close();
+            });
+            $(window).on('resize' + this.ns + ' scroll' + this.ns, function () {
+                self.posicionar();
+            });
+        },
+
+        close: function () {
+            if (this.$popover) this.$popover.hide();
+            this.abierto = false;
+            $(document).off('mousedown' + this.ns);
+            $(window).off('resize' + this.ns + ' scroll' + this.ns);
+        },
+
+        prevMonth: function () {
+            this.mes--;
+            if (this.mes < 0) {
+                this.mes = 11;
+                this.anio--;
+            }
+            this.dibujar();
+        },
+
+        nextMonth: function () {
+            this.mes++;
+            if (this.mes > 11) {
+                this.mes = 0;
+                this.anio++;
+            }
+            this.dibujar();
+        },
+
+        seleccionar: function (fecha) {
+            if (!this.permitida(fecha)) return;
+            this.seleccionada = fecha;
+            this.anio = fecha.getFullYear();
+            this.mes = fecha.getMonth();
+
+            var texto = fechaTexto(fecha);
+            this.$input.val(texto).trigger('change');
+
+            if (typeof this.opciones.onSelect === 'function') this.opciones.onSelect.call(this, texto, fecha);
+
+            if (this.opciones.closeOnSelect) this.close();
+            else this.dibujar();
+        },
+
+        destroy: function () {
+            this.close();
+            this.$input.off(this.ns).removeData('gyuFecha');
+            if (this.$popover) this.$popover.remove();
+            this.$popover = null;
+        }
+    };
+
+    $.fn.gyuFecha = function (opcion) {
+        var opciones = typeof opcion === 'object' ? opcion : null;
+        return this.each(function () {
+            var $this = $(this);
+            var instancia = $this.data('gyuFecha');
+            if (!instancia) {
+                instancia = new GyuFecha(this, opciones);
+                $this.data('gyuFecha', instancia);
+            }
+            if (typeof opcion === 'string' && typeof instancia[opcion] === 'function') instancia[opcion]();
+        });
+    };
+
+    var FECHA_AUTO = 'input.gyu-input[type="date"]';
+
+    function fechaAuto(raiz) {
+        var $raiz = $(raiz);
+        $raiz.filter(FECHA_AUTO).add($raiz.find(FECHA_AUTO)).each(function () {
+            if (!$(this).data('gyuFecha')) $(this).gyuFecha();
+        });
+    }
+
+    $(function () {
+        fechaAuto(document.body);
+        if (!window.MutationObserver) return;
+        new MutationObserver(function (cambios) {
+            for (var i = 0; i < cambios.length; i++) {
+                for (var j = 0; j < cambios[i].addedNodes.length; j++) {
+                    if (cambios[i].addedNodes[j].nodeType === 1) fechaAuto(cambios[i].addedNodes[j]);
+                }
+            }
+        }).observe(document.body, { childList: true, subtree: true });
+    });
+
+    $(document).on('click focusin', 'input[data-gyu-fecha]', function () {
+        var $input = $(this);
+        if (!$input.data('gyuFecha')) {
+            var tamano = $input.attr('data-gyu-fecha');
+            $input.gyuFecha({ size: tamano === 'compact' ? 'compact' : 'normal' }).gyuFecha('open');
+        }
+    });
+
 })(window.jQuery || window.$);

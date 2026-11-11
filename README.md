@@ -5,18 +5,18 @@ Sistema de diseño. Mismo API que Bootstrap 6 donde Bootstrap ya resolvió el pr
 ## Uso por CDN
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ginyu-ui@1.0.5/dist/ginyu.min.css">
-<script src="https://cdn.jsdelivr.net/npm/ginyu-ui@1.0.5/dist/ginyu.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ginyu-ui@1.0.6/dist/ginyu.min.css">
+<script src="https://cdn.jsdelivr.net/npm/ginyu-ui@1.0.6/dist/ginyu.min.js"></script>
 ```
 
 Desde GitHub, con la etiqueta de versión:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/B1H3L/ginyu-ui@v1.0.5/dist/ginyu.min.css">
-<script src="https://cdn.jsdelivr.net/gh/B1H3L/ginyu-ui@v1.0.5/dist/ginyu.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/B1H3L/ginyu-ui@v1.0.6/dist/ginyu.min.css">
+<script src="https://cdn.jsdelivr.net/gh/B1H3L/ginyu-ui@v1.0.6/dist/ginyu.min.js"></script>
 ```
 
-Quien solo use botones, formularios, cabecera y layout carga únicamente el CSS. El JS es para diálogos, toasts, tabs, selector desplegable, estado vacío y bloqueo de botón en AJAX.
+Quien solo use botones, formularios, cabecera y layout carga únicamente el CSS. El JS es para diálogos, toasts, tabs, selector desplegable, selector de fecha, estado vacío y bloqueo de botón en AJAX.
 
 ## Dependencias
 

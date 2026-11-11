@@ -2417,6 +2417,254 @@ body:has(.gyu-modal) .jqx-window-modal {
   color: var(--gyu-c-contrast, #fff);
   background-color: var(--gyu-c, var(--gyu-primary));
 }
+.gyu-fecha {
+  position: absolute;
+  z-index: 99999;
+  box-sizing: border-box;
+  width: 300px;
+  max-width: calc(100vw - 24px);
+  padding: 16px 14px 12px;
+  font-family: var(--gyu-fuente);
+  background: var(--gyu-fondo);
+  border: 1px solid var(--gyu-linea-suave);
+  border-radius: 20px;
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.14), 0 4px 12px rgba(15, 23, 42, 0.05);
+  user-select: none;
+  animation: gyuFechaAparecer 0.15s ease-out;
+}
+
+.gyu-fecha-arriba {
+  animation-name: gyuFechaAparecerArriba;
+}
+
+@keyframes gyuFechaAparecer {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gyuFechaAparecerArriba {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.gyu-fecha-encabezado {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding: 0 2px;
+}
+
+.gyu-fecha-titulo {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+  color: var(--gyu-texto-max);
+}
+
+.gyu-fecha-titulo-mes {
+  text-transform: capitalize;
+}
+
+.gyu-fecha-titulo-anio {
+  margin-left: 4px;
+  font-weight: 500;
+  color: var(--gyu-texto-2);
+}
+
+.gyu-fecha-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  margin: 0;
+  padding: 0;
+  color: var(--gyu-texto-3);
+  background: var(--gyu-fondo-2);
+  border: 1px solid var(--gyu-linea-suave);
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.gyu-fecha-nav:hover {
+  background: var(--gyu-linea);
+  border-color: var(--gyu-linea-fuerte);
+}
+
+.gyu-fecha-nav:focus-visible {
+  box-shadow: 0 0 0 2px var(--gyu-primary-ring);
+}
+
+.gyu-fecha-dias-semana,
+.gyu-fecha-cuadricula {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.gyu-fecha-dias-semana {
+  margin-bottom: 6px;
+  text-align: center;
+}
+
+.gyu-fecha-dia-semana {
+  padding: 3px 0;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: lowercase;
+  color: var(--gyu-texto-4);
+}
+
+.gyu-fecha-dia {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 34px;
+  margin: 0;
+  padding: 0;
+  font-family: var(--gyu-fuente);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gyu-texto);
+  background: var(--gyu-fondo);
+  border: 1px solid var(--gyu-linea);
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.gyu-fecha-dia:hover,
+.gyu-fecha-dia:focus-visible {
+  font-weight: 600;
+  color: var(--gyu-primary);
+  background: var(--gyu-primary-soft);
+  border-color: var(--gyu-primary);
+}
+
+.gyu-fecha-dia-fuera {
+  font-weight: 400;
+  color: var(--gyu-linea-fuerte);
+  border-color: var(--gyu-linea-suave);
+}
+
+.gyu-fecha-dia-fuera:hover,
+.gyu-fecha-dia-fuera:focus-visible {
+  font-weight: 400;
+  color: var(--gyu-texto-4);
+  background: var(--gyu-fondo-2);
+  border-color: var(--gyu-linea-fuerte);
+}
+
+.gyu-fecha-dia-hoy {
+  font-weight: 700;
+  color: var(--gyu-primary);
+  border-color: var(--gyu-primary);
+}
+
+.gyu-fecha-dia.gyu-deshabilitado,
+.gyu-fecha-dia.gyu-deshabilitado:hover {
+  font-weight: 400;
+  color: var(--gyu-linea-fuerte);
+  background: var(--gyu-fondo-2);
+  border-color: var(--gyu-linea-suave);
+  cursor: not-allowed;
+}
+
+.gyu-fecha-dia.gyu-seleccionado,
+.gyu-fecha-dia.gyu-seleccionado:hover {
+  font-weight: 600;
+  color: #ffffff;
+  background: var(--gyu-primary);
+  border-color: var(--gyu-primary);
+  box-shadow: 0 4px 12px rgba(43, 133, 223, 0.35);
+}
+
+.gyu-fecha-pie {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--gyu-linea-suave);
+}
+
+.gyu-fecha-compacto {
+  width: 270px;
+  padding: 14px 12px 10px;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.16), 0 3px 8px rgba(15, 23, 42, 0.06);
+}
+
+.gyu-fecha-compacto .gyu-fecha-encabezado {
+  margin-bottom: 10px;
+  padding: 0 2px;
+}
+
+.gyu-fecha-compacto .gyu-fecha-titulo {
+  font-size: 14px;
+}
+
+.gyu-fecha-compacto .gyu-fecha-nav {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+}
+
+.gyu-fecha-compacto .gyu-fecha-nav svg {
+  width: 5px;
+  height: 9px;
+}
+
+.gyu-fecha-compacto .gyu-fecha-dias-semana,
+.gyu-fecha-compacto .gyu-fecha-cuadricula {
+  gap: 4px;
+}
+
+.gyu-fecha-compacto .gyu-fecha-dias-semana {
+  margin-bottom: 4px;
+}
+
+.gyu-fecha-compacto .gyu-fecha-dia-semana {
+  padding: 2px 0;
+  font-size: 10.5px;
+}
+
+.gyu-fecha-compacto .gyu-fecha-dia {
+  height: 30px;
+  font-size: 12px;
+  border-width: 1px;
+  border-radius: 8px;
+}
+
+.gyu-fecha-compacto .gyu-fecha-pie {
+  gap: 6px;
+  margin-top: 10px;
+  padding-top: 8px;
+}
+
+.gyu-input[data-gyu-fecha],
+.gyu-input[type="date"] {
+  cursor: pointer;
+}
 .gyu-px-0 {
   padding-right: 0 !important;
   padding-left: 0 !important;

@@ -204,10 +204,42 @@ El ícono se define una sola vez por página y se referencia con `<use>`.
 </svg>
 
 <div style="position: relative;">
-    <input type="date" class="gyu-input" style="padding-right: 42px;">
+    <input type="date" id="fecha" class="gyu-input" style="padding-right: 42px;">
     <svg style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); width: 18px; height: 17px; pointer-events: none;"><use href="#icoCalendario"></use></svg>
 </div>
 ```
+
+Todo `<input type="date" class="gyu-input">` usa el selector de fecha de Ginyu (siguiente sección) sin escribir nada más: el JS lo activa al cargar la página y también en el contenido que se inserte después (modales por AJAX).
+
+## Selector de fecha
+
+Calendario desplegable propio. Sustituye al selector nativo de `type="date"`. El valor del input siempre es `yyyy-mm-dd` y al elegir un día se dispara `change`.
+
+| Clase | Uso |
+|---|---|
+| `gyu-fecha` | Calendario flotante. Lo arma el JS y lo agrega al `body`. |
+| `gyu-fecha-compacto` | Variante de 270px, más pequeña (el normal mide 300px). |
+| `gyu-fecha-arriba` | Se agrega cuando abre hacia arriba. |
+| `gyu-fecha-encabezado`, `gyu-fecha-nav`, `gyu-fecha-titulo` (`-mes`, `-anio`) | Cabecera con mes, año y flechas. |
+| `gyu-fecha-dias-semana`, `gyu-fecha-dia-semana` | Fila de días de la semana. |
+| `gyu-fecha-cuadricula`, `gyu-fecha-dia` | Cuadrícula y cada día. |
+| `gyu-fecha-dia-fuera`, `gyu-fecha-dia-hoy`, `gyu-seleccionado` | Día de otro mes, día actual y día elegido. |
+| `gyu-fecha-pie` | Pie con los botones Hoy y Cerrar (`gyu-btn-solid` y `gyu-btn-subtle`). |
+
+Las clases las genera el plugin; no se escriben a mano.
+
+```html
+<input type="date" id="fecha" class="gyu-input">
+```
+
+Un `<input type="date" class="gyu-input">` se activa solo, con la fecha en `yyyy-mm-dd`, respetando sus atributos `min`, `max`, `readonly` y `disabled`. Con `data-gyu-fecha` (en un `type="text"`) se activa al primer clic o foco; `data-gyu-fecha="compact"` da la variante compacta. Para pasar opciones:
+
+```js
+$('#fecha').gyuFecha({ size: 'compact', placement: 'auto', firstDay: 1, onSelect: function (texto, fecha) {} });
+$('#fecha').gyuFecha('open' | 'close' | 'prevMonth' | 'nextMonth' | 'destroy');
+```
+
+Opciones: `size` (`normal` | `compact`), `placement` (`auto` | `top` | `bottom`), `firstDay` (0 = domingo), `closeOnSelect`, `todayText`, `closeText`, `prevText`, `nextText`, `monthsFull`, `weekdaysShort`, `onSelect`, `min`, `max` (objetos `Date`). Al activarse, el plugin pasa el input de `type="date"` a `text`. Para leer el valor: `$('#fecha').val()` (`yyyy-mm-dd`, vacío si no hay fecha). Se cierra con Escape, clic fuera, Cerrar o al elegir.
 
 ## Ayudantes de espaciado
 
