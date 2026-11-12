@@ -379,6 +379,8 @@
         info: toast('info', '', 'Aviso', 'info')
     };
 
+    var seleccionUid = 0;
+
     $.fn.gyuSeleccion = function (options) {
         var cfg = $.extend({
             placeholder: 'Seleccionar...',
@@ -466,8 +468,56 @@
                 $rotulo.text(texto).toggleClass('gyu-placeholder', !elegidas.length || (!multiple && elegidas[0].valor === ''));
             }
 
+            var nsPosicion = '.gyuSeleccionPos' + (++seleccionUid);
+            var vigilante = null;
+
+            function posicionar() {
+                var r = $activador[0].getBoundingClientRect();
+                var vh = window.innerHeight;
+                var $lista = $desplegable.find('.gyu-seleccion-opciones');
+
+                $lista.css('max-height', '');
+                $desplegable.css({ left: r.left, width: r.width, top: 'auto', bottom: 'auto' });
+
+                var alto = $desplegable.outerHeight();
+                var abajo = vh - r.bottom - 12;
+                var arriba = r.top - 12;
+                var sobre = alto > abajo && arriba > abajo;
+                var disponible = sobre ? arriba : abajo;
+
+                if (alto > disponible) {
+                    var extra = alto - $lista.outerHeight();
+                    $lista.css('max-height', Math.max(100, disponible - extra));
+                }
+
+                if (sobre) $desplegable.css('bottom', vh - r.top + 6);
+                else $desplegable.css('top', r.bottom + 6);
+            }
+
+            function abrirPanel() {
+                $desplegable.addClass('gyu-seleccion-flotante').appendTo(document.body);
+                posicionar();
+                $(window).on('resize' + nsPosicion, posicionar);
+                window.addEventListener('scroll', alDesplazar, true);
+                vigilante = setInterval(function () {
+                    if (!$caja[0].isConnected || !$caja.is(':visible')) cerrar();
+                }, 150);
+            }
+
+            function alDesplazar(e) {
+                if ($desplegable[0].contains(e.target)) return;
+                posicionar();
+            }
+
             function cerrar() {
                 $caja.removeClass('gyu-abierto');
+                $(window).off(nsPosicion);
+                window.removeEventListener('scroll', alDesplazar, true);
+                clearInterval(vigilante);
+                if ($desplegable.hasClass('gyu-seleccion-flotante')) {
+                    $desplegable.removeClass('gyu-seleccion-flotante').css({ left: '', width: '', top: '', bottom: '' }).appendTo($caja);
+                    $desplegable.find('.gyu-seleccion-opciones').css('max-height', '');
+                }
             }
 
             function marcarTodas(valor) {
@@ -549,8 +599,16 @@
                 if ($select.prop('disabled')) return;
 
                 var abierto = $caja.hasClass('gyu-abierto');
-                $('.gyu-seleccion.gyu-abierto').not($caja).removeClass('gyu-abierto');
-                $caja.toggleClass('gyu-abierto', !abierto);
+                $('.gyu-seleccion.gyu-abierto').not($caja).each(function () {
+                    $(this).data('gyuCerrar')();
+                });
+
+                if (abierto) {
+                    cerrar();
+                } else {
+                    $caja.addClass('gyu-abierto');
+                    abrirPanel();
+                }
 
                 if (!abierto) {
                     var $buscar = $desplegable.find('.gyu-seleccion-busqueda-entrada');
@@ -561,19 +619,26 @@
                 }
             });
 
+            $caja.data('gyuCerrar', cerrar);
             $select.on('change.gyuSeleccion gyu.actualizar', sincronizar);
             sincronizar();
         });
     };
 
+    function cerrarSelecciones() {
+        $('.gyu-seleccion.gyu-abierto').each(function () {
+            $(this).data('gyuCerrar')();
+        });
+    }
+
     $(document).on('click', function (e) {
-        if (!$(e.target).closest('.gyu-seleccion').length) {
-            $('.gyu-seleccion.gyu-abierto').removeClass('gyu-abierto');
+        if (!$(e.target).closest('.gyu-seleccion, .gyu-seleccion-desplegable').length) {
+            cerrarSelecciones();
         }
     });
 
     $(document).on('keydown', function (e) {
-        if (e.key === 'Escape') $('.gyu-seleccion.gyu-abierto').removeClass('gyu-abierto');
+        if (e.key === 'Escape') cerrarSelecciones();
     });
 
     var FECHA_DEFECTOS = {
@@ -603,7 +668,7 @@
 
     function fechaLeer(str) {
         if (!str || typeof str !== 'string') return null;
-        var p = str.trim().split('-');
+        var p = str.trim().split(/[T ]/)[0].split('-');
         if (p.length !== 3) return null;
         var y = parseInt(p[0], 10);
         var m = parseInt(p[1], 10) - 1;
@@ -621,13 +686,31 @@
             a.getDate() === b.getDate();
     }
 
+    function horaLeer(str) {
+        var m = /[T ](\d{1,2}):(\d{2})/.exec(str || '');
+        if (!m) return null;
+        var h = parseInt(m[1], 10);
+        var n = parseInt(m[2], 10);
+        if (h > 23 || n > 59) return null;
+        return { h: h, m: n };
+    }
+
     function GyuFecha(elemento, opciones) {
         this.$input = $(elemento);
+        this.conHora = this.$input.attr('type') === 'datetime-local';
         this.opciones = $.extend({}, FECHA_DEFECTOS, opciones);
+        if (this.conHora) {
+            if (!opciones || opciones.todayText == null) this.opciones.todayText = 'Ahora';
+            if (!opciones || opciones.closeText == null) this.opciones.closeText = 'Aceptar';
+            this.opciones.closeOnSelect = false;
+        }
         this.ns = '.gyuFecha' + (++fechaUid);
         this.opciones.min = this.opciones.min || fechaLeer(this.$input.attr('min'));
         this.opciones.max = this.opciones.max || fechaLeer(this.$input.attr('max'));
         this.seleccionada = fechaLeer(this.$input.val());
+        var tiempo = horaLeer(this.$input.val()) || { h: new Date().getHours(), m: new Date().getMinutes() };
+        this.hora = tiempo.h;
+        this.minuto = tiempo.m;
         var inicial = this.seleccionada || new Date();
         this.anio = inicial.getFullYear();
         this.mes = inicial.getMonth();
@@ -639,10 +722,10 @@
     GyuFecha.prototype = {
         iniciar: function () {
             var self = this;
-            if (this.$input.attr('type') === 'date') this.$input.attr('type', 'text');
-            this.$input.attr({ autocomplete: 'off', maxlength: 10 });
+            if (this.$input.attr('type') === 'date' || this.$input.attr('type') === 'datetime-local') this.$input.attr('type', 'text');
+            this.$input.attr({ autocomplete: 'off', maxlength: this.conHora ? 16 : 10 });
             if (!this.$input.is('[data-gyu-fecha]')) this.$input.attr('data-gyu-fecha', '');
-            if (!this.$input.attr('placeholder')) this.$input.attr('placeholder', 'aaaa-mm-dd');
+            if (!this.$input.attr('placeholder')) this.$input.attr('placeholder', this.conHora ? 'aaaa-mm-ddThh:mm' : 'aaaa-mm-dd');
 
             this.$input.on('click' + this.ns + ' focus' + this.ns, function (e) {
                 e.stopPropagation();
@@ -675,6 +758,13 @@
                     '</div>' +
                     '<div class="gyu-fecha-dias-semana"></div>' +
                     '<div class="gyu-fecha-cuadricula"></div>' +
+                    (this.conHora
+                        ? '<div class="gyu-fecha-tiempo">' +
+                            '<input type="text" class="gyu-input gyu-fecha-hora" inputmode="numeric" maxlength="2" aria-label="Hora" autocomplete="off">' +
+                            '<span>:</span>' +
+                            '<input type="text" class="gyu-input gyu-fecha-minuto" inputmode="numeric" maxlength="2" aria-label="Minutos" autocomplete="off">' +
+                        '</div>'
+                        : '') +
                     '<div class="gyu-fecha-pie">' +
                         '<button type="button" class="gyu-btn-solid ' + btnPie + ' gyu-fecha-hoy">' + o.todayText + '</button>' +
                         '<button type="button" class="gyu-btn-subtle gyu-theme-secondary ' + btnPie + ' gyu-fecha-cerrar">' + o.closeText + '</button>' +
@@ -689,7 +779,37 @@
 
             this.$popover.on('click', '.gyu-fecha-anterior', function (e) { e.stopPropagation(); self.prevMonth(); });
             this.$popover.on('click', '.gyu-fecha-siguiente', function (e) { e.stopPropagation(); self.nextMonth(); });
-            this.$popover.on('click', '.gyu-fecha-hoy', function (e) { e.stopPropagation(); self.seleccionar(new Date()); });
+            this.$popover.on('click', '.gyu-fecha-hoy', function (e) {
+                e.stopPropagation();
+                var ahora = new Date();
+                if (self.conHora) {
+                    self.hora = ahora.getHours();
+                    self.minuto = ahora.getMinutes();
+                    self.dibujarTiempo();
+                }
+                self.seleccionar(ahora);
+            });
+            this.$popover.on('input', '.gyu-fecha-hora, .gyu-fecha-minuto', function () {
+                var limpio = $(this).val().replace(/\D/g, '');
+                $(this).val(limpio);
+                self.leerTiempo();
+                self.escribirValor();
+            });
+            this.$popover.on('blur', '.gyu-fecha-hora, .gyu-fecha-minuto', function () {
+                self.leerTiempo();
+                self.dibujarTiempo();
+                self.escribirValor();
+            });
+            this.$popover.on('keydown', '.gyu-fecha-hora, .gyu-fecha-minuto', function (e) {
+                if (e.key !== 'ArrowUp' && e.key !== 'ArrowDown') return;
+                e.preventDefault();
+                var paso = e.key === 'ArrowUp' ? 1 : -1;
+                self.leerTiempo();
+                if ($(this).hasClass('gyu-fecha-hora')) self.hora = (self.hora + paso + 24) % 24;
+                else self.minuto = (self.minuto + paso + 60) % 60;
+                self.dibujarTiempo();
+                self.escribirValor();
+            });
             this.$popover.on('click', '.gyu-fecha-cerrar', function (e) { e.stopPropagation(); self.close(); });
             this.$popover.on('click', '.gyu-fecha-dia', function (e) {
                 e.stopPropagation();
@@ -736,6 +856,27 @@
             }
 
             this.$popover.find('.gyu-fecha-cuadricula').html(html);
+        },
+
+        dibujarTiempo: function () {
+            if (!this.$popover || !this.conHora) return;
+            this.$popover.find('.gyu-fecha-hora').val(fechaCero(this.hora));
+            this.$popover.find('.gyu-fecha-minuto').val(fechaCero(this.minuto));
+        },
+
+        leerTiempo: function () {
+            if (!this.$popover || !this.conHora) return;
+            var h = parseInt(this.$popover.find('.gyu-fecha-hora').val(), 10);
+            var m = parseInt(this.$popover.find('.gyu-fecha-minuto').val(), 10);
+            this.hora = isNaN(h) ? 0 : Math.min(23, h);
+            this.minuto = isNaN(m) ? 0 : Math.min(59, m);
+        },
+
+        escribirValor: function () {
+            if (!this.seleccionada) return;
+            var texto = fechaTexto(this.seleccionada);
+            if (this.conHora) texto += 'T' + fechaCero(this.hora) + ':' + fechaCero(this.minuto);
+            this.$input.val(texto).trigger('change');
         },
 
         permitida: function (fecha) {
@@ -788,8 +929,17 @@
             this.anio = base.getFullYear();
             this.mes = base.getMonth();
 
+            if (this.conHora) {
+                var tiempo = horaLeer(this.$input.val());
+                if (tiempo) {
+                    this.hora = tiempo.h;
+                    this.minuto = tiempo.m;
+                }
+            }
+
             if (!this.$popover) this.construir();
             this.dibujar();
+            this.dibujarTiempo();
             this.abierto = true;
             this.$popover.show();
             this.posicionar();
@@ -833,7 +983,9 @@
             this.anio = fecha.getFullYear();
             this.mes = fecha.getMonth();
 
+            if (this.conHora) this.leerTiempo();
             var texto = fechaTexto(fecha);
+            if (this.conHora) texto += 'T' + fechaCero(this.hora) + ':' + fechaCero(this.minuto);
             this.$input.val(texto).trigger('change');
 
             if (typeof this.opciones.onSelect === 'function') this.opciones.onSelect.call(this, texto, fecha);
@@ -863,7 +1015,7 @@
         });
     };
 
-    var FECHA_AUTO = 'input.gyu-input[type="date"]';
+    var FECHA_AUTO = 'input.gyu-input[type="date"], input.gyu-input[type="datetime-local"]';
 
     function fechaAuto(raiz) {
         var $raiz = $(raiz);

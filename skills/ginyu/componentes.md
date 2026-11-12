@@ -52,7 +52,7 @@ Variables por botón: `--gyu-btn-min-height`, `--gyu-btn-padding-x`, `--gyu-btn-
 
 | Clase | Uso |
 |---|---|
-| `gyu-input`, `gyu-select`, `gyu-textarea`, `gyu-label` | Controles. `gyu-input[type=date]` y `gyu-input[type=datetime-local]` abren el selector con un clic en el borde derecho. |
+| `gyu-input`, `gyu-select`, `gyu-textarea`, `gyu-label` | Controles. `gyu-input[type=date]` y `gyu-input[type=datetime-local]` abren el selector de fecha de Ginyu (el de fecha y hora añade hora y minutos). `readonly` se ve igual que `disabled` (gris). |
 | `gyu-select-jqx` | jqxDropDownButton con aspecto de select. |
 | `gyu-check-lista`, `gyu-check`, `gyu-check-input`, `gyu-check-card`, `gyu-check-indicador` | Casillas tipo tarjeta. |
 | `gyu-switch`, `gyu-switch-slider`, `gyu-switch-compact`, `gyu-switch-celda` | Interruptor. |
@@ -115,7 +115,7 @@ $('#estado').gyuSeleccion({ placeholder: 'Todos', ancho: '260px' });
 
 Opciones: `placeholder`, `ancho`, `textoTodos`, `textoSeleccionados` (`{count}`), `maxItemsRotulo`, `buscadorPlaceholder`, `umbralBuscador`. Dispara `change` en el `<select>`. El `<select>` oculto sigue siendo la fuente: si cambias opciones, valor (`val()`) o `disabled` por código, llama `$('#estado').trigger('gyu.actualizar')`. Tras un reset de formulario hazlo dentro de un `setTimeout`. Imagen por opción: `<option data-imagen="url">`.
 
-El panel mide siempre lo mismo que el combo (sin `min-width`). Si el código oculta o muestra el `<select>` (`.hide()`, `.show()`), no sirve: el combo es el `div.gyu-seleccion` que lo envuelve. Envolver el `<select>` en un `div` propio y alternar ese `div`. Si el `<select>` lleva `<option value="">Seleccionar</option>` y además `placeholder`, el texto sale duplicado: dejar solo el `placeholder`, o la opción vacía si el valor vacío debe poder elegirse.
+El panel mide siempre lo mismo que el combo (sin `min-width`) y, al abrirse, se dibuja en `body` con posición fija: se muestra por encima de modales y sidebars sin recortarse, se abre hacia arriba si abajo no cabe y se cierra solo si el combo se oculta o se quita del DOM. Si el código oculta o muestra el `<select>` (`.hide()`, `.show()`), no sirve: el combo es el `div.gyu-seleccion` que lo envuelve. Envolver el `<select>` en un `div` propio y alternar ese `div`. Si el `<select>` lleva `<option value="">Seleccionar</option>` y además `placeholder`, el texto sale duplicado: dejar solo el `placeholder`, o la opción vacía si el valor vacío debe poder elegirse.
 
 ## JS
 
@@ -239,7 +239,7 @@ $('#fecha').gyuFecha({ size: 'compact', placement: 'auto', firstDay: 1, onSelect
 $('#fecha').gyuFecha('open' | 'close' | 'prevMonth' | 'nextMonth' | 'destroy');
 ```
 
-Opciones: `size` (`normal` | `compact`), `placement` (`auto` | `top` | `bottom`), `firstDay` (0 = domingo), `closeOnSelect`, `todayText`, `closeText`, `prevText`, `nextText`, `monthsFull`, `weekdaysShort`, `onSelect`, `min`, `max` (objetos `Date`). Al activarse, el plugin pasa el input de `type="date"` a `text`. Para leer el valor: `$('#fecha').val()` (`yyyy-mm-dd`, vacío si no hay fecha). Se cierra con Escape, clic fuera, Cerrar o al elegir.
+Opciones: `size` (`normal` | `compact`), `placement` (`auto` | `top` | `bottom`), `firstDay` (0 = domingo), `closeOnSelect`, `todayText`, `closeText`, `prevText`, `nextText`, `monthsFull`, `weekdaysShort`, `onSelect`, `min`, `max` (objetos `Date`). Al activarse, el plugin pasa el input de `type="date"` o `type="datetime-local"` a `text`. Con `datetime-local` el popover añade casilleros de hora y minutos (flechas ↑ ↓ para ajustar), "Hoy" pasa a "Ahora", "Cerrar" a "Aceptar", no se cierra al elegir día, el valor queda `yyyy-mm-ddThh:mm` y `min`/`max` solo filtran por día. Para leer el valor: `$('#fecha').val()` (`yyyy-mm-dd`, vacío si no hay fecha). Se cierra con Escape, clic fuera, Cerrar o al elegir.
 
 ## Ayudantes de espaciado
 

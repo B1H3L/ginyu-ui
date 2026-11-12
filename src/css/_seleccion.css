@@ -98,6 +98,17 @@
   display: block;
 }
 
+.gyu-seleccion-desplegable.gyu-seleccion-flotante {
+  --gyu-sel-panel-radio: 16px;
+  --gyu-sel-panel-borde: #eef2f6;
+  --gyu-sel-panel-sombra: 0 16px 36px rgba(15, 23, 42, 0.14);
+  position: fixed;
+  right: auto;
+  z-index: var(--gyu-z-menu);
+  display: block;
+  font-family: var(--gyu-fuente);
+}
+
 @keyframes gyu-seleccion-aparecer {
   from {
     opacity: 0;

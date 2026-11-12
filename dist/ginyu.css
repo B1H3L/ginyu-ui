@@ -1013,13 +1013,25 @@
 
 .gyu-input:disabled,
 .gyu-input[disabled],
+.gyu-input[readonly],
 .gyu-select:disabled,
-.gyu-textarea:disabled {
+.gyu-textarea:disabled,
+.gyu-textarea[readonly] {
   color: var(--gyu-texto-3);
   background-color: var(--gyu-linea-suave);
   border-color: var(--gyu-linea-fuerte);
   cursor: not-allowed;
   opacity: 1;
+}
+
+.gyu-input[readonly]:focus,
+.gyu-input[readonly][data-gyu-fecha],
+.gyu-textarea[readonly]:focus {
+  color: var(--gyu-texto-3);
+  background-color: var(--gyu-linea-suave);
+  border-color: var(--gyu-linea-fuerte);
+  cursor: not-allowed;
+  box-shadow: none;
 }
 
 .gyu-textarea {
@@ -1752,6 +1764,17 @@ body:has(.gyu-modal) .jqx-window-modal {
 
 .gyu-seleccion.gyu-abierto .gyu-seleccion-desplegable {
   display: block;
+}
+
+.gyu-seleccion-desplegable.gyu-seleccion-flotante {
+  --gyu-sel-panel-radio: 16px;
+  --gyu-sel-panel-borde: #eef2f6;
+  --gyu-sel-panel-sombra: 0 16px 36px rgba(15, 23, 42, 0.14);
+  position: fixed;
+  right: auto;
+  z-index: var(--gyu-z-menu);
+  display: block;
+  font-family: var(--gyu-fuente);
 }
 
 @keyframes gyu-seleccion-aparecer {
@@ -2605,6 +2628,25 @@ body:has(.gyu-modal) .jqx-window-modal {
   margin-top: 10px;
   padding-top: 10px;
   border-top: 1px solid var(--gyu-linea-suave);
+}
+
+.gyu-fecha-tiempo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--gyu-linea-suave);
+  font-weight: 700;
+  color: var(--gyu-texto-1);
+}
+
+.gyu-fecha-tiempo .gyu-input {
+  width: 58px;
+  height: 36px;
+  padding: 0;
+  text-align: center;
 }
 
 .gyu-fecha-compacto {

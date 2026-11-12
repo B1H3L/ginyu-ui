@@ -188,6 +188,25 @@
   border-top: 1px solid var(--gyu-linea-suave);
 }
 
+.gyu-fecha-tiempo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--gyu-linea-suave);
+  font-weight: 700;
+  color: var(--gyu-texto-1);
+}
+
+.gyu-fecha-tiempo .gyu-input {
+  width: 58px;
+  height: 36px;
+  padding: 0;
+  text-align: center;
+}
+
 .gyu-fecha-compacto {
   width: 270px;
   padding: 14px 12px 10px;

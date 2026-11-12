@@ -57,13 +57,25 @@
 
 .gyu-input:disabled,
 .gyu-input[disabled],
+.gyu-input[readonly],
 .gyu-select:disabled,
-.gyu-textarea:disabled {
+.gyu-textarea:disabled,
+.gyu-textarea[readonly] {
   color: var(--gyu-texto-3);
   background-color: var(--gyu-linea-suave);
   border-color: var(--gyu-linea-fuerte);
   cursor: not-allowed;
   opacity: 1;
+}
+
+.gyu-input[readonly]:focus,
+.gyu-input[readonly][data-gyu-fecha],
+.gyu-textarea[readonly]:focus {
+  color: var(--gyu-texto-3);
+  background-color: var(--gyu-linea-suave);
+  border-color: var(--gyu-linea-fuerte);
+  cursor: not-allowed;
+  box-shadow: none;
 }
 
 .gyu-textarea {
