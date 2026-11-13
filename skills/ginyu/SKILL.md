@@ -42,7 +42,7 @@ El CSS importa DM Sans (Google Fonts) e iziToast (jsDelivr). El JS necesita jQue
 
 ## Reglas
 
-1. **Botón = estilo + theme.** `gyu-btn-solid|outline|subtle|text|link` más `gyu-theme-{primary,secondary,success,danger,warning,info,accent,inverse}`. Sin theme es primary. Sin tamaño es mediano (38px). Tamaños: `gyu-btn-xs`, `-sm`, `-lg`. Solo ícono: `gyu-btn-icon` con `aria-label`.
+1. **Botón = estilo + theme.** `gyu-btn-solid|outline|subtle|text|link` más `gyu-theme-{primary,secondary,success,danger,warning,info,accent,inverse}`. Sin theme es primary. Sin tamaño es mediano (30px). Tamaños: `gyu-btn-xs`, `-sm`, `-lg`. Solo ícono: `gyu-btn-icon` con `aria-label`.
 2. **Solo existen las clases de `componentes.md`.** No inventar clases de Ginyu para layout (flex, gap, márgenes, textos): los ajustes puntuales se resuelven con `style=""` en el elemento. Si una vista necesita clases propias, hover o `@media`, van en un `<style>` de esa vista (regla 16), no en los archivos de Ginyu.
 3. **Ancho completo de un botón:** no hay clase; se ajusta con `style`.
 4. **Una sola cabecera de página:** `gyu-cabecera` con un `<h4>` y un `gyu-ruta`.
@@ -61,6 +61,7 @@ El CSS importa DM Sans (Google Fonts) e iziToast (jsDelivr). El JS necesita jQue
 17. **Íconos:** usar los SVG de `iconos.json` (índice en `iconos.md`). No inventar ni redibujar; si falta uno, avisar al usuario.
 18. **Orden y posición:** al migrar una vista se respeta el orden y la alineación originales (qué va primero, qué queda a la izquierda o a la derecha, qué botón junto a cuál). No reordenar ni recolocar.
 19. **Toda jqxGrid lleva `ginyuEmptyState`, sin excepción:** las de la página, las de modales, las de tarjetas y las de un dropdown. Antes de entregar, listar todas las grillas de la vista y de sus parciales (modales cargados por AJAX incluidos) y comprobar que cada una lo llama. Nunca dejar el "No data to display" de jqx, ni armar un vacío propio (imagen + `<h3>`, `#no-data`, `display:none`/`show()` de un bloque): se elimina y se reemplaza por el de Ginyu. Si el vacío tenía un mensaje propio ("Registre la atención para…"), pasarlo como `titulo`/`subtitulo`; si cambia con el estado, actualizar el texto de `.gyu-vacio-titulo` y `.gyu-vacio-desc`. `top` = alto de cabecera de la grilla (más la fila de filtros si la hay).
+20. **Eliminar va siempre al final y es uno solo.** El botón eliminar (ícono de papelera de `iconos.json`) va al final de la barra de acciones, después de agregar, editar y los demás, aunque en la vista original estuviera primero (excepción a la regla 18). Nunca una columna con un ícono eliminar en cada fila de la grilla: se elimina con un único botón, sobre la fila seleccionada o sobre varias marcadas con una columna de checkbox. Si la vista no cumple esto, no se corrige en silencio ni se deja pasar: se le dice al usuario qué hay que cambiar y se pregunta con `AskUserQuestion` si lo hacemos ("Esta vista tiene eliminar por fila / eliminar antes de agregar. Debe quedar un solo botón eliminar al final, con selección por fila o checkbox. ¿Lo cambio?"). Solo se cambia con su respuesta afirmativa. Lo mismo vale para el controlador o la acción si hay que adaptarlos (recibir varios ids, eliminar por lote, devolver el resultado): se explica el cambio y se pregunta antes de tocarlo.
 
 ## Estructura de una vista
 
@@ -86,7 +87,8 @@ El CSS importa DM Sans (Google Fonts) e iziToast (jsDelivr). El JS necesita jQue
 2. Envolver el contenido en `gyu-pagina` > `gyu-cabecera` + `gyu-cuerpo`.
 3. Reemplazar los botones, formularios, tablas, modales y alertas por sus equivalentes de `componentes.md`.
 4. Mover a clases de Ginyu los `style` y los `<style>` que son de adorno global (botones, inputs, cabeceras, modales), pero solo después de comprobar que la clase `gyu-*` da el mismo resultado. Dejar `style=""` solo para ajustes puntuales de layout y conservar los `<style>` propios de la vista y los ajustes con `!important` (regla 16).
-   Los tamaños que Ginyu no tiene (por ejemplo controles de 30px) se dejan inline con `style=""` y se avisan al usuario.
+   Los tamaños que Ginyu no tiene (por ejemplo controles de 34px) se dejan inline con `style=""` y se avisan al usuario.
 5. Respetar el orden y la posición originales de los elementos (regla 18).
 6. Comprobar que toda clase `gyu-*` usada exista en `assets/ginyu.css`.
 7. Comprobar que cada jqxGrid de la vista y de sus parciales llama a `ginyuEmptyState` y que no quedó ningún vacío propio (regla 19).
+8. Comprobar que el botón eliminar quedó al final de la barra de acciones y que no queda ninguna columna con un ícono eliminar por fila. Si la vista original no lo cumple, preguntar al usuario antes de cambiarlo (regla 20).

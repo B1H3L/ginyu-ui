@@ -8,15 +8,15 @@
   --gyu-btn-h: var(--gyu-c-hover, var(--gyu-primary-hover));
   --gyu-btn-s: var(--gyu-c-soft, var(--gyu-primary-soft));
   --gyu-btn-ink: var(--gyu-c-contrast, var(--gyu-fondo));
-  --gyu-btn-gap: 7px;
-  --gyu-btn-min-height: var(--gyu-alto-control);
-  --gyu-btn-padding-x: 14px;
+  --gyu-btn-gap: 5px;
+  --gyu-btn-min-height: 30px;
+  --gyu-btn-padding-x: 11px;
   --gyu-btn-padding-y: 0;
-  --gyu-btn-font-size: 13px;
+  --gyu-btn-font-size: 12px;
   --gyu-btn-font-weight: 600;
   --gyu-btn-line-height: 1;
   --gyu-btn-border-width: 1px;
-  --gyu-btn-border-radius: var(--gyu-radio);
+  --gyu-btn-border-radius: var(--gyu-radio-s);
   --gyu-btn-disabled-opacity: 0.55;
   display: inline-flex;
   align-items: center;
@@ -118,27 +118,27 @@
 }
 
 .gyu-btn-xs {
-  --gyu-btn-min-height: 24px;
+  --gyu-btn-min-height: 22px;
+  --gyu-btn-font-size: 10px;
+  --gyu-btn-padding-x: 7px;
+  --gyu-btn-gap: 4px;
+  --gyu-btn-border-radius: 4px;
+}
+
+.gyu-btn-sm {
+  --gyu-btn-min-height: 26px;
   --gyu-btn-font-size: 11px;
-  --gyu-btn-padding-x: 8px;
+  --gyu-btn-padding-x: 9px;
   --gyu-btn-gap: 4px;
   --gyu-btn-border-radius: 5px;
 }
 
-.gyu-btn-sm {
-  --gyu-btn-min-height: 30px;
-  --gyu-btn-font-size: 12px;
-  --gyu-btn-padding-x: 11px;
-  --gyu-btn-gap: 5px;
-  --gyu-btn-border-radius: var(--gyu-radio-s);
-}
-
 .gyu-btn-lg {
-  --gyu-btn-min-height: 46px;
-  --gyu-btn-font-size: 15px;
-  --gyu-btn-padding-x: 22px;
-  --gyu-btn-gap: 9px;
-  --gyu-btn-border-radius: var(--gyu-radio-l);
+  --gyu-btn-min-height: 38px;
+  --gyu-btn-font-size: 13px;
+  --gyu-btn-padding-x: 14px;
+  --gyu-btn-gap: 7px;
+  --gyu-btn-border-radius: var(--gyu-radio);
 }
 
 .gyu-btn-icon {
