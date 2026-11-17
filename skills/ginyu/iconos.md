@@ -36,6 +36,8 @@ Reglas:
 | `enviar` | Enviar | enviar mensaje avion papel send |
 | `cambiar-foto` | Cambiar foto (cámara) | foto camara cambiar imagen perfil |
 | `iniciar` | Iniciar | iniciar comenzar start examen |
+| `rayo` | Rayo (aplicar / ejecutar) | rayo aplicar criterios ejecutar rapido energia bolt flash |
+| `refrescar` | Refrescar (flechas circulares) | refrescar actualizar recargar reload refresh sincronizar |
 
 ## General
 
