@@ -134,7 +134,7 @@
 }
 
 .gyu-btn-lg {
-  --gyu-btn-min-height: 38px;
+  --gyu-btn-min-height: var(--gyu-alto-input);
   --gyu-btn-font-size: 13px;
   --gyu-btn-padding-x: 14px;
   --gyu-btn-gap: 7px;

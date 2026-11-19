@@ -1,6 +1,6 @@
 .gyu-select-jqx,
 .gyu-select-jqx.jqx-dropdownbutton {
-  height: 40px !important;
+  height: var(--gyu-alto-input) !important;
   font-family: var(--gyu-fuente) !important;
   font-size: 13.5px !important;
   color: var(--gyu-texto) !important;

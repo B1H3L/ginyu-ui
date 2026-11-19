@@ -67,7 +67,8 @@
   --gyu-z-dialogo: 99999999;
   --gyu-z-toast: 999999999;
 
-  --gyu-alto-control: 38px;
+  --gyu-alto-control: var(--gyu-alto-input);
+  --gyu-alto-input: 30px;
   --gyu-fuente: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 

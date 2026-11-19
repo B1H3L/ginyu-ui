@@ -52,7 +52,7 @@ Variables por botón: `--gyu-btn-min-height`, `--gyu-btn-padding-x`, `--gyu-btn-
 
 | Clase | Uso |
 |---|---|
-| `gyu-input`, `gyu-select`, `gyu-textarea`, `gyu-label` | Controles. `gyu-input[type=date]` y `gyu-input[type=datetime-local]` abren el selector de fecha de Ginyu (el de fecha y hora añade hora y minutos). `readonly` se ve igual que `disabled` (gris). |
+| `gyu-input`, `gyu-select`, `gyu-textarea`, `gyu-label` | Controles. `gyu-input[type=date]` y `gyu-input[type=datetime-local]` abren el selector de fecha de Ginyu (el de fecha y hora añade hora y minutos). `readonly` se ve igual que `disabled` (gris). Alto de 30px en `gyu-input`, `gyu-select`, `gyu-select-jqx`, el combo `gyuSeleccion`, `gyu-buscar` y `gyu-conteo`, y también en `gyu-btn-lg`, definido por `--gyu-alto-input`. |
 | `gyu-select-jqx` | jqxDropDownButton con aspecto de select. |
 | `gyu-check-lista`, `gyu-check`, `gyu-check-input`, `gyu-check-card`, `gyu-check-indicador` | Casillas tipo tarjeta. |
 | `gyu-switch`, `gyu-switch-slider`, `gyu-switch-compact`, `gyu-switch-celda` | Interruptor. |
